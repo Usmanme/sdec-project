@@ -67,24 +67,25 @@
             </li>
 
             <li class="navigation-header">
-                <span data-i18n="Pages">Categories</span>
+                <span data-i18n="Pages">Courses</span>
                 <i data-feather="more-horizontal"></i>
             </li>
 
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="javascript:void(0)">
                     <i data-feather="grid"></i>
-                    <span class="menu-title text-truncate" data-i18n="Services">Categories</span>
+                    <span class="menu-title text-truncate" data-i18n="Services">Courses</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="nav-item {{ request()->routeIs('categories') ? 'active' : null }}">
-                        <a class="d-flex align-items-center" href="{{ route('categories') }}">
+                    {{-- <li class="nav-item {{ request()->routeIs('categories') ? 'active' : null }}"> --}}
+                    <li class="nav-item">
+                        <a class="d-flex align-items-center" href="#">
                             <i class="bi bi-tags"></i>
-                            <span class="menu-title text-truncate" data-i18n="Email">Category List</span>
+                            <span class="menu-title text-truncate" data-i18n="Email">Course List</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ request()->routeIs('category.createOrEdit') ? 'active' : null }}">
-                        <a class="d-flex align-items-center" href="{{ route('category.createOrEdit') }}">
+                    <li class="nav-item {{ request()->routeIs('course.createOrEdit') ? 'active' : null }}">
+                        <a class="d-flex align-items-center" href="{{ route('course.createOrEdit') }}">
                             <i class="bi bi-tags"></i>
                             <span class="menu-title text-truncate" data-i18n="Email">Add New</span>
                         </a>

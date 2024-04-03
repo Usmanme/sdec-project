@@ -2,8 +2,8 @@
 <div class="row">
     <div class="col-lg-6 col-md-6 position-relative">
         <input type="hidden" name="id" value="{{ isset($data['category']) ? $data['category']['id'] : 0 }}">
-        <label for="name">Category</label>
-        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Category" value="{{ isset($data['category']) ? $data['category']['name'] : old('name') }}">
+        <label for="name">Course</label>
+        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Course" value="{{ isset($data['category']) ? $data['category']['name'] : old('name') }}">
         @error('name')
             <div class="invalid-tooltip">{{ $message }}</div>
         @enderror
@@ -19,20 +19,28 @@
 <br>
 <div class="row">
     <div class="col-lg-6 col-md-6 position-relative">
+        <input type="hidden" name="id" value="{{ isset($data['category']) ? $data['category']['id'] : 0 }}">
+            <label for="name">Programe Code</label>
+            <input type="text" name="program_code" id="program_code" class="form-control @error('program_code') is-invalid @enderror" placeholder="Course" value="{{ isset($data['category']) ? $data['category']['program_code'] : old('program_code') }}">
+            @error('program_code')
+                <div class="invalid-tooltip">{{ $message }}</div>
+            @enderror
+    </div>
+    <div class="col-lg-6 col-md-6 position-relative">
         <label for="description">Description</label>
         <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3" placeholder="Description">{{ isset($data['category']) ? $data['category']['description'] : old('description') }}</textarea>
         @error('description')
             <div class="invalid-tooltip">{{ $message }}</div>
         @enderror
     </div>
-    <div class="col-lg-6 col-md-6 position-relative">
+    {{-- <div class="col-lg-6 col-md-6 position-relative">
         <label class="form-label fs-5" for="Image">Image</label>
             <input type="file" class="filepond @error('image') is-invalid @enderror"
                 name="image" id="image" accept="image/png, image/jpeg, image/jpg" />
             @error('image')
                 <div class="invalid-tooltip">{{ $message }}</div>
             @enderror
-    </div>
+    </div> --}}
 </div>
 <br>
 <div class="row">

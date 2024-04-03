@@ -13,9 +13,10 @@ Breadcrumbs::for('categories', function (BreadcrumbTrail $trail) {
     $trail->push('Categories',  route('categories'));
 });
 
-Breadcrumbs::for('category.createOrEdit', function (BreadcrumbTrail $trail) {
-    $trail->parent('categories');
-    $trail->push('Add New Category');
+Breadcrumbs::for('course.createOrEdit', function (BreadcrumbTrail $trail) {
+    // $trail->parent('Course');
+    $trail->parent('dashboard');
+    $trail->push('Add New Course');
 });
 
 Breadcrumbs::for('category.update', function (BreadcrumbTrail $trail) {

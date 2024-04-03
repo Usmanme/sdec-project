@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Repository\Category\CategoryInterface;
-use App\Repository\Category\CategoryService;
+use App\Repository\Course\CourseInterface;
+use App\Repository\Course\CourseService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(CategoryInterface::class,CategoryService::class);
+        $this->app->bind(CourseInterface::class,CourseService::class);
     }
 
     /**

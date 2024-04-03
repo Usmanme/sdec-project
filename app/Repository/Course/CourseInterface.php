@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository\Category;
+namespace App\Repository\Course;
 
-interface CategoryInterface
+interface CourseInterface
 {
     public function create($id=null);
     public function storeOrUpdate($request);
