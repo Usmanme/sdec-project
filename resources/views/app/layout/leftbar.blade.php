@@ -79,7 +79,7 @@
                 <ul class="menu-content">
                     {{-- <li class="nav-item {{ request()->routeIs('categories') ? 'active' : null }}"> --}}
                     <li class="nav-item">
-                        <a class="d-flex align-items-center" href="#">
+                        <a class="d-flex align-items-center" href="{{route('course.list')}}">
                             <i class="bi bi-tags"></i>
                             <span class="menu-title text-truncate" data-i18n="Email">Course List</span>
                         </a>

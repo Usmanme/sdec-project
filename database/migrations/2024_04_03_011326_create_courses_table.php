@@ -25,7 +25,7 @@ return new class extends Migration
             $table->date('end_date')->nullable();
             $table->string('image')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('inactive');
-            $table->string('created_by');
+            $table->foreignId('user_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });

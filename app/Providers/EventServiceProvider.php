@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Course;
+use App\Observers\CourseSlugObserver;
 use App\Repository\Course\CourseInterface;
 use App\Repository\Course\CourseService;
 use Illuminate\Auth\Events\Registered;
@@ -28,6 +30,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Course::observe(CourseSlugObserver::class);
         $this->app->bind(CourseInterface::class,CourseService::class);
     }
 

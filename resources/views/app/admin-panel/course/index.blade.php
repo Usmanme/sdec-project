@@ -1,10 +1,10 @@
 @extends('app.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'categories') }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'courses') }}
 @endsection
 
-@section('page-title', 'Categories')
+@section('page-title', 'Courses')
 
 @section('page-vendor')
 
@@ -30,9 +30,9 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-start mb-0">Categories</h2>
+                <h2 class="content-header-title float-start mb-0">Course List</h2>
                 <div class="breadcrumb-wrapper">
-                    {{ Breadcrumbs::render('categories') }}
+                    {{ Breadcrumbs::render('courses') }}
                 </div>
             </div>
         </div>
@@ -41,15 +41,100 @@
 
 @section('content')
 
-    <div class="card">
-        <div class="card-body">
-            <form id="categories-datatable" action="{{ route('category.delete') }}" method="get">
-                {{ $dataTable->table() }}
-            </form>
-        </div>
+<div class="card">
+    <div class="card-body">
+        {{-- <form action="{{ route('course.list') }}" method="get">
+            <div class="row d-flex justify-content-between">
+                <div class="col-md-3 mb-1">
+                    <h2>Blogs</h2>
+                </div>
+                <div class="col-md-5 d-flex mb-1">
+                    <input type="text" class="form-control" id="search" name="search" placeholder="Search Blog" value="{{ isset( request()->search) ? request()->search : ''  }}">
+                    <button class="btn btn-primary" style="margin-left: 5px;">Search</button>
+                </div>
+            </div>
+        </form> --}}
+        <form id="course-datatable" action="{{route('course.delete')}}" method="get">
+            <div class="d-flex justify-content-between mb-1">
+                <div class="col-md-3">
+                    <a href="{{ route('course.createOrEdit') }}">
+                        <button class="dt-button btn btn-relief-outline-primary waves-effect waves-float waves-light"
+                            tabindex="0" aria-controls="tutor-table" type="button"><span><i class="bi bi-plus"></i> Add Course
+                                </span></button>
+                    </a>
+                </div>
+                <div class="col-md-3 d-flex justify-content-end">
+                    <button onclick="deleteSelected()" class="dt-button btn btn-relief-outline-danger waves-effect waves-float waves-light"
+                        tabindex="0" aria-controls="tutor-table" type="button"><span><i class="bi bi-plus"></i> Delete
+                            Selected</span></button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped" id="user-book-tutors">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Course</th>
+                            <th>Description</th>
+                            <th>Program Code</th>
+                            <th>Venue</th>
+                            <th>Fee</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                            <th>Created By</th>
+                            <th>Created AT</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($data['courses'] as $course)
+                            <tr>
+                                <td>
+                                    <div class="form-check"> <input class="form-check-input dt-checkboxes" type="checkbox"
+                                            value="{{ $course->id }}" name="chkTableRow[]"
+                                            onchange="changeTableRowColor(this)"
+                                            id="chkTableRow_{{ $course->id }}"><label class="form-check-label"
+                                            for="chkTableRow_{{ $course->id }}"></label></div>
+                                </td>
+                                <td>{{ $course->title ?? '--' }}</td>
+                                <td>{{ \Str::limit($course->description,20) ?? '--' }}</td>
+                                <td>{{ $course->program_code ?? '--' }}</td>
+                                <td>{{ $course->venue ?? '--' }}</td>
+                                <td>{{ $course->fee ?? '--' }}</td>
+                                <td>{{ $course->start_date ?? '--' }}</td>
+                                <td>{{ $course->end_date ?? '--' }}</td>
+                                <td>
+                                    <span class="badge rounded-pill @if ($course->status == 'active') badge-light-primary @else badge-light-danger @endif ">{{ $course->status == 'active' ? 'Active' : 'Inactive' }}</span>
+                                </td>
+                                <td>{{ $course?->user->name ?? '--' }}</td>
+                                <td class="text-primary fw-bold">{{ $course->created_at ?? '' }}</td>
+                                <td>
+                                    <a class="btn btn-relief-outline-warning waves-effect waves-float waves-light"
+                                        style="margin: 5px" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Edit Category" href="{{ route('course.createOrEdit',['id'=>encryptParams($course->id)]) }}">
+                                        <i class="bi bi-pencil" style="font-size: 1.1rem" class="m-10"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @empty
+                            <td colspan="8">
+                                <center>
+                                    <p class="text-danger fw-bold">
+                                        No Record Found
+                                    </p>
+                                </center>
+                            </td>
+                            @endforelse
+                    </tbody>
+                </table>
+                <div class="mt-2 d-flex justify-content-end">
+                    {{ $data['courses']->links() }}
+                </div>
+            </div>
+        </form>
     </div>
-
-    @include('app.admin-panel.image-modal.modal')
+</div>
 
 
 @endsection
@@ -75,70 +160,15 @@
 @endsection
 
 @section('custom-js')
-{{ $dataTable->scripts() }}
 <script>
     function createNewCategory()
     {
-        location.href = '{{ route('category.createOrEdit') }}';
+        location.href = '{{ route('course.createOrEdit') }}';
     }
 
-    function addImagesToModal(id)
-    {
-        $.ajax({
-            type: "GET",
-            url: "{{ route('category.image') }}",
-            data: { id: id },
-            success: function (response) {
-                if (response.status) {
-                    $('#images_modal_body').empty();
-                    $('#modalLabel').text("Category Image");
-                        $('#images_modal_body').append(`
-                            <img class="img-fluid swiper_img" src="{{ asset('app-assets/images/category/${response.image}') }}" alt="'image'" />
-                        `);
-                    $('#image-modal').modal('show');
-                }
-            }
-        });
-    }
 
-    function addDetailsToModal(id)
-    {
-        $.ajax({
-            type: "GET",
-            url: "{{ route('category.details') }}",
-            data: { id: id},
-            success: function (response) {
-                $('#images_modal_body').empty();
-                $('#modalLabel').text("Category Details");
-                $('#images_modal_body').append(`
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 position-relative">
-                            <label for="name">Category</label>
-                            <input type="text" name="name" id="name" value="${response.data.name}" disabled class="form-control @error('name') is-invalid @enderror" placeholder="Category">
-                        </div>
-                        <div class="col-lg-6 col-md-6 position-relative">
-                            <label for="description">Description</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3" placeholder="Description" disabled> ${response.data.description} </textarea>
-                        </div>
-                    </div>
-                    <br>
 
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 position-relative">
-                            <label for="meta_title">Meta Title</label>
-                            <input type="text" name="meta_title" id="meta_title" value="${response.data.meta_title}" disabled class="form-control @error('meta_title') is-invalid @enderror" placeholder="Meta Title">
-                        </div>
-                        <div class="col-lg-6 col-md-6 position-relative">
-                            <label for="meta_keyword">Meta Keyword</label>
-                            <input type="text" name="meta_keyword" id="meta_keyword" value="${response.data.meta_keyword}" disabled  class="form-control @error('meta_keyword') is-invalid @enderror" placeholder="Meta Keyword">
-                        </div>
-                    </div>
-                    <br>
-                `);
-            }
-        });
-        $('#image-modal').modal('show');
-    }
+
 
     function deleteSelected() {
         var selectedCheckboxes = $('.dt-checkboxes:checked').length;
@@ -154,7 +184,7 @@
                 confirmButtonClass: 'btn-danger',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $('#categories-datatable').submit();
+                    $('#course-datatable').submit();
                 }
             });
         } else {

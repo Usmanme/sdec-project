@@ -122,14 +122,14 @@ if (!function_exists('getTrashedDataCount')) {
     function getTrashedDataCount(): float|int
     {
         $trashed = [];
-        foreach (getAllModels() as $model) {
-            $models = app("App\Models\\" . $model);
-            if (in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($models))) {
-                $trashed[] = $models->onlyTrashed()->count();
-            } else {
-                $trashed[] = 0;
-            }
-        }
+        // foreach (getAllModels() as $model) {
+        //     $models = app("App\Models\\" . $model);
+        //     if (in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($models))) {
+        //         $trashed[] = $models->onlyTrashed()->count();
+        //     } else {
+        //     }
+            $trashed[] = 0;
+        // }
         return array_sum($trashed);
     }
 }

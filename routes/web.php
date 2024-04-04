@@ -26,8 +26,10 @@ Route::group([
 });
 // Dashboard Routes
 Route::controller(CourseController::class)->middleware('auth')->prefix('course')->group( function () {
-    Route::get('create','create')->name('course.createOrEdit');
-    Route::post('storeOrUpdate/{id?}','storeOrUpdate')->name('course.storeOrUpdate');
+    Route::get('/','index')->name('course.list');
+    Route::get('delete','deleteCourse')->name('course.delete');
+    Route::get('create/{id?}','createOrEdit')->name('course.createOrEdit');
+    Route::post('storeOrUpdate','storeOrUpdate')->name('course.storeOrUpdate');
 } );
 
 // Frontend Routes
@@ -36,30 +38,4 @@ Route::get('/homepage', function () {
 });
 Route::get('/single-course', function () {
     return view('front-end/course/single-course');
-});
-
-Route::get('test',function(){
-    $data = array(
-        14 => [
-            'id' => 15,
-            'name' => 'Austria',
-            'iso3' => 'AUT',
-
-        ],
-        15 => [
-            'id' => 16,
-            'name' => 'Azerbaijan',
-            'iso3' => 'AZE',
-
-        ],
-    );
-    foreach ($data as & $country) {
-        $iso3Index = array_search('iso3', array_keys($country));
-
-        $country = array_slice($country, 0, $iso3Index + 1);
-    }
-
-    // Unset the reference to avoid potential conflicts
-    unset($country);
-    dd($data);
 });

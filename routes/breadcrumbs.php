@@ -8,9 +8,9 @@ Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
 });
 
 // Categories
-Breadcrumbs::for('categories', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('courses', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
-    $trail->push('Categories',  route('categories'));
+    $trail->push('Course List',  route('course.list'));
 });
 
 Breadcrumbs::for('course.createOrEdit', function (BreadcrumbTrail $trail) {
@@ -19,7 +19,7 @@ Breadcrumbs::for('course.createOrEdit', function (BreadcrumbTrail $trail) {
     $trail->push('Add New Course');
 });
 
-Breadcrumbs::for('category.update', function (BreadcrumbTrail $trail) {
-    $trail->parent('categories');
-    $trail->push('Update Category');
+Breadcrumbs::for('course.storeOrUpdate', function (BreadcrumbTrail $trail) {
+    $trail->parent('courses');
+    $trail->push('Update Course');
 });

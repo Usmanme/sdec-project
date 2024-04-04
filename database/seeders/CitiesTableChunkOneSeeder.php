@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
 use App\Models\city;
+use Illuminate\Support\Facades\DB;
+
 class CitiesTableChunkOneSeeder extends Seeder
 {
 
@@ -15,6 +16,9 @@ class CitiesTableChunkOneSeeder extends Seeder
      */
     public function run()
     {
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        // city::truncate();
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1');
         $cities =
         [
                 0 =>
