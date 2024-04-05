@@ -29,6 +29,8 @@ Route::controller(CourseController::class)->middleware('auth')->prefix('course')
     Route::get('/','index')->name('course.list');
     Route::get('delete','deleteCourse')->name('course.delete');
     Route::get('create/{id?}','createOrEdit')->name('course.createOrEdit');
+    Route::get('import-courses','importCourseForm')->name('course.importCourseForm');
+    Route::post('import','importCourses')->name('course.import');
     Route::post('storeOrUpdate','storeOrUpdate')->name('course.storeOrUpdate');
 } );
 

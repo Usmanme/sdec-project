@@ -54,6 +54,13 @@
                 </div>
             </div>
         </form> --}}
+        <div class="col-md-12 d-flex justify-content-end mb-2">
+            <a href="{{ route('course.importCourseForm') }}">
+                <button class="dt-button btn btn-relief-outline-info waves-effect waves-float waves-light"
+                    tabindex="0" aria-controls="tutor-table" type="button"><span><i class="bi bi-plus"></i> Import Courses
+                        </span></button>
+            </a>
+        </div>
         <form id="course-datatable" action="{{route('course.delete')}}" method="get">
             <div class="d-flex justify-content-between mb-1">
                 <div class="col-md-3">
@@ -68,6 +75,7 @@
                         tabindex="0" aria-controls="tutor-table" type="button"><span><i class="bi bi-plus"></i> Delete
                             Selected</span></button>
                 </div>
+
             </div>
             <div class="table-responsive">
                 <table class="table table-hover table-striped" id="user-book-tutors">

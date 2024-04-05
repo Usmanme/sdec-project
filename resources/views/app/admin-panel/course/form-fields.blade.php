@@ -50,8 +50,8 @@
         <label for="">Start Date</label>
         <input type="date" value="{{ isset($data['course']) ? $data['course']->start_date : old('start_date')}}" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name="start_date">
         @error('start_date')
-        <div class="invalid-tooltip">{{ $message }}</div>
-    @enderror
+            <div class="invalid-tooltip">{{ $message }}</div>
+        @enderror
     </div>
     <div class="col-lg-3 col-md-3 position-relative">
         <label for="">End Date</label>

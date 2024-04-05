@@ -2,6 +2,8 @@
 
 use App\Models\{
     AdditionalCost,
+    City,
+    Country,
     SiteConfigration,
     Type,
     UserBatch,
@@ -440,3 +442,45 @@ if (!function_exists('editDateColumn')) {
 //         );
 //     }
 // }
+
+
+if (!function_exists('countryCity')) {
+    function countryCity( $country_city ) {
+        $exploded_string = explode('-', $country_city);
+
+        $country_name = $exploded_string[0];
+        $city_name = $exploded_string[1];
+
+        $country_name = Country::whereName($country_name)->value('name');
+        $city_name = City::whereName($city_name)->value('name');
+
+        if( is_null( $country_name ) ) {
+            $country = new Country();
+            $country->name = $country_name;
+            $country->iso3 = generateISO3($country_name);
+            $country->created_at = now();
+            $country->updated_at = now();
+            $country->save();
+            $country_name = $country->name;
+        }
+
+        if( is_null( $city_name ) ) {
+            $city = new City();
+            $city->name = $city_name;
+            $city->country_id = $country->id;
+            $city->created_at = now();
+            $city->updated_at = now();
+            $city->save();
+            $city_name = $city->name;
+        }
+        dd($country,$city);
+        return [ $country_name, $city_name ];
+    }
+}
+
+if (!function_exists('generateISO3')) {
+    function generateISO3( $country ) {
+        return strtoupper(substr($country,0,2));
+    }
+}
+

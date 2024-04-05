@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\CourseImport;
 use App\Models\Course;
 use App\Repository\Course\CourseInterface;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
@@ -45,6 +47,27 @@ class CourseController extends Controller
     {
         $ids = $request->chkTableRow;
         return $this->course->deleteCourse($ids);
-        // $this->course->delete( $request->id );
+    }
+
+    public function importCourseForm()
+    {
+        $data['title'] = "Import Courses";
+        $data['breadcrumb'] = 'course.importCourseForm';
+        $data['page_title'] = 'Import Courses';
+        $data['submit_button'] = 'Import';
+        return view('app.admin-panel.course.import',compact('data'));
+    }
+
+    public function importCourses( Request $request )
+    {
+        $validated_data = $this->validate($request,[
+            'file'=>'required|file|mimes:xls,xlsx',
+        ],
+        [
+            'file.required' => 'Please select an Excel file.',
+            'file.mimes' => 'The file must be an Excel file with extension .xls or .xlsx.',
+        ]);
+
+        Excel::import( new CourseImport(), $request->file('file') );
     }
 }
