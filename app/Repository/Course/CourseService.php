@@ -19,7 +19,7 @@ class CourseService implements CourseInterface
         $data['breadcrumb'] = 'course.createOrEdit';
         $data['page_title'] = 'Add New Course';
         $data['submit_button'] = 'Save Course';
-        $data['countries'] = Country::selectRaw("CONCAT(countries.name, ' - ', cities.name) as country_city")
+        $data['countries'] = Country::selectRaw("CONCAT(countries.name, '-', cities.name) as country_city")
         ->join('cities', 'countries.id', 'cities.country_id')
         ->get();
         if(isset($id) && !is_null($id))

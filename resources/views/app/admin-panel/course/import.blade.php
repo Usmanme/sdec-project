@@ -43,9 +43,18 @@
 @endsection
 
 @section('content')
-
 <div class="card">
-    <center class="mt-2 mb-2"><h3>{{ $data['title'] }}</h3></center>
+    <center class="mt-2"><h1>Download Sample File</h1></center>
+    <div class="card-body text-center">
+        <a href="{{asset('app-assets')}}/Sample-File.xlsx"
+        class="btn btn-relief-outline-info waves-effect waves-float waves-light">
+        <i data-feather='save'></i>
+        Download
+    </a>
+    </div>
+</div>
+<div class="card">
+    <center class="mt-2 mb-2"><h1>{{ $data['title'] }}</h1></center>
     <div class="card-body">
         <form action="{{route('course.import')}}" method="post" enctype="multipart/form-data">
             @csrf

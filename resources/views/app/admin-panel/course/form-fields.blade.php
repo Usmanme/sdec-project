@@ -1,3 +1,4 @@
+{{-- @dd($data['course']->venue) --}}
 <div class="row">
     <div class="col-lg-6 col-md-6 position-relative">
         <input type="hidden" name="id" value="{{ isset($data['course']) ? $data['course']['id'] : 0 }}">

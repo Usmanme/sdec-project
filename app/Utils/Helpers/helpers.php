@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\{Collection};
 use Illuminate\Support\Facades\{Crypt, File};
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 // if (!function_exists('filter_strip_tags')) {
 
@@ -448,13 +449,14 @@ if (!function_exists('countryCity')) {
     function countryCity( $country_city ) {
         $exploded_string = explode('-', $country_city);
 
-        $country_name = $exploded_string[0];
-        $city_name = $exploded_string[1];
+        $country_name = trim($exploded_string[0]);
+        $city_name = trim($exploded_string[1]);
 
-        $country_name = Country::whereName($country_name)->value('name');
-        $city_name = City::whereName($city_name)->value('name');
+        $country = Country::whereName($country_name)
+        ->first(['id','name']);
 
-        if( is_null( $country_name ) ) {
+        if( is_null( $country ) )
+        {
             $country = new Country();
             $country->name = $country_name;
             $country->iso3 = generateISO3($country_name);
@@ -462,25 +464,56 @@ if (!function_exists('countryCity')) {
             $country->updated_at = now();
             $country->save();
             $country_name = $country->name;
-        }
 
-        if( is_null( $city_name ) ) {
             $city = new City();
-            $city->name = $city_name;
-            $city->country_id = $country->id;
-            $city->created_at = now();
-            $city->updated_at = now();
-            $city->save();
-            $city_name = $city->name;
+            if( is_null($city_name) ) {
+                $city->name = $city_name;
+                $city->country_id = $country->id;
+                $city->created_at = now();
+                $city->updated_at = now();
+                $city->save();
+                $city_name = $city->name;
+            }else {
+                $city_name = $city->name;
+            }
+
         }
-        dd($country,$city);
-        return [ $country_name, $city_name ];
+        else if( $country ) {
+            $city = City::where([
+                ['country_id',$country->id],
+                ['name',$city_name]
+            ])
+            ->first(['id','name']);
+
+            if( is_null( $city ) ) {
+                $city = new City();
+                $city->name = $city_name;
+                $city->country_id = $country->id;
+                $city->created_at = now();
+                $city->updated_at = now();
+                $city->save();
+            }
+        }
+        return [ rtrim($country->name).'-'.$city->name ];
     }
 }
 
 if (!function_exists('generateISO3')) {
     function generateISO3( $country ) {
         return strtoupper(substr($country,0,2));
+    }
+}
+
+if (!function_exists('excelDateConversion')) {
+    function excelDateConversion( $date ) {
+        if (gettype($date) == 'integer') {
+            $carbonDate = Carbon::createFromTimestamp(($date - 25569) * 86400);
+            $dob = $carbonDate->format('Y-m-d');
+            return $dob;
+        } elseif (gettype($date) == 'string') {
+            $dob = date('Y-m-d', strtotime($date));
+            return $dob;
+        }
     }
 }
 

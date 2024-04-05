@@ -14,7 +14,7 @@ class CourseSlugObserver
      */
     public function created(course $course)
     {
-        $course->slug = $course->title. '-'.$course->id;
+        $course->slug = str_replace(' ','-',$course->title).'-'.$course->id;
         $course->save();
     }
 

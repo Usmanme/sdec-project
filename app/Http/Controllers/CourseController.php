@@ -67,7 +67,12 @@ class CourseController extends Controller
             'file.required' => 'Please select an Excel file.',
             'file.mimes' => 'The file must be an Excel file with extension .xls or .xlsx.',
         ]);
-
-        Excel::import( new CourseImport(), $request->file('file') );
+        $course_import = New CourseImport();
+        Excel::import( $course_import, $request->file('file') );
+        if( $course_import->getFailureRecords() > 0 ) {
+            return to_route('course.list')->withDanger($course_import->getFailureRecords().' are duplicate enteries/missing values.');
+        }else {
+            return to_route('course.list')->withSuccess('Course Imported.');
+        }
     }
 }

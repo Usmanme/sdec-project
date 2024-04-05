@@ -126,7 +126,7 @@
                                 </td>
                             </tr>
                             @empty
-                            <td colspan="8">
+                            <td colspan="12">
                                 <center>
                                     <p class="text-danger fw-bold">
                                         No Record Found
@@ -173,10 +173,6 @@
     {
         location.href = '{{ route('course.createOrEdit') }}';
     }
-
-
-
-
 
     function deleteSelected() {
         var selectedCheckboxes = $('.dt-checkboxes:checked').length;
