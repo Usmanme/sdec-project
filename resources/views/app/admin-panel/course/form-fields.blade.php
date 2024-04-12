@@ -29,9 +29,11 @@
     <div class="col-lg-6 col-md-6 position-relative">
         <label for="meta_keyword">Venue</label>
         <select name="venue" id="venue" class="form-control">
-            @foreach ($data['countries'] as $country)
+            @forelse ($data['countries'] as $country)
                 <option value="{{$country->country_city}}" {{ isset($data['course']) && $data['course']->venue == $country->country_city ? 'selected' : '' }}>{{$country->country_city}}</option>
-            @endforeach
+            @empty
+                <option value="">--No Venue Found--</option>
+            @endforelse
         </select>
         @error('venue')
             <div class="invalid-tooltip">{{ $message }}</div>

@@ -37,7 +37,6 @@ class CourseService implements CourseInterface
 
     public function storeOrUpdate($request)
     {
-        // dd($request);
         $course_status = array_key_exists('course_status' ,$request);
         $course_exists = array_key_exists('id' ,$request);
         $id = (int)$request['id'];
