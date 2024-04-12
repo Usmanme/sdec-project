@@ -14,7 +14,7 @@ class CategorySlug
      */
     public function created(Category $category)
     {
-        $category->slug = str_replace(' ','-',$category->title).'-'.$category->id;
+        $category->slug = str_replace(' ','-',$category->name).'-'.$category->id;
         $category->save();
     }
 

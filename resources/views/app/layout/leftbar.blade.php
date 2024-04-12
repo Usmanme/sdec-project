@@ -100,13 +100,13 @@
                 <ul class="menu-content">
                     {{-- <li class="nav-item {{ request()->routeIs('categories') ? 'active' : null }}"> --}}
                     <li class="nav-item">
-                        <a class="d-flex align-items-center" href="{{route('category.list')}}">
+                        <a class="d-flex align-items-center" href="{{route('sub-category.list')}}">
                             <i class="bi bi-tags"></i>
                             <span class="menu-title text-truncate" data-i18n="Email">Category List</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ request()->routeIs('category.createOrEdit') ? 'active' : null }}">
-                        <a class="d-flex align-items-center" href="{{ route('category.createOrEdit') }}">
+                    <li class="nav-item {{ request()->routeIs('sub-category.createOrEdit') ? 'active' : null }}">
+                        <a class="d-flex align-items-center" href="{{ route('sub-category.createOrEdit') }}">
                             <i class="bi bi-tags"></i>
                             <span class="menu-title text-truncate" data-i18n="Email">Add New</span>
                         </a>

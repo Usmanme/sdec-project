@@ -45,7 +45,7 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-start mb-0">Categories</h2>
+                <h2 class="content-header-title float-start mb-0">Sub Categories</h2>
                 <div class="breadcrumb-wrapper">
                     {{ Breadcrumbs::render($data['breadcrumb']) }}
                 </div>
@@ -59,12 +59,12 @@
         <div class="card">
             <center class="mt-2 mb-2"><h3>{{ $data['title'] }}</h3></center>
             <div class="card-body">
-                <form action="{{route('category.storeOrUpdate')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('sub-category.storeOrUpdate')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @if (isset($data))
-                        {{ view('app.admin-panel.category.form-fields',['data'=>$data]) }}
+                        {{ view('app.admin-panel.sub-category.form-fields',['data'=>$data]) }}
                     @else
-                        {{ view('app.admin-panel.category.form-fields') }}
+                        {{ view('app.admin-panel.sub-category.form-fields') }}
                     @endif
                     <div class="card-footer d-flex align-items-center justify-content-end">
                         <button type="submit" class="btn btn-relief-outline-success waves-effect waves-float waves-light me-1">

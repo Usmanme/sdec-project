@@ -517,3 +517,12 @@ if (!function_exists('excelDateConversion')) {
     }
 }
 
+if (!function_exists('isNotZeroAndNull')) {
+    function isNotZeroAndNull( $value ) {
+        if( $value !=0 && !is_null( $value )) {
+            return $value;
+        }else {
+            return false;
+        }
+    }
+}

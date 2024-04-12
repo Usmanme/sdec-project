@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Models\SubCategoryCourse;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +41,13 @@ Route::controller(CategoryController::class)->middleware('auth')->prefix('catego
     Route::get('delete','deleteCategory')->name('category.delete');
     Route::get('create/{id?}','createOrEdit')->name('category.createOrEdit');
     Route::post('storeOrUpdate','storeOrUpdate')->name('category.storeOrUpdate');
+} );
+
+Route::controller(SubCategoryController::class)->middleware('auth')->prefix('sub-category')->group( function () {
+    Route::get('/','index')->name('sub-category.list');
+    Route::get('delete','deleteSubCategory')->name('sub-category.delete');
+    Route::get('create/{id?}','createOrEdit')->name('sub-category.createOrEdit');
+    Route::post('storeOrUpdate','storeOrUpdate')->name('sub-category.storeOrUpdate');
 } );
 
 // Frontend Routes

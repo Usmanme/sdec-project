@@ -36,10 +36,26 @@ Breadcrumbs::for('category', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('category.createOrEdit', function (BreadcrumbTrail $trail) {
     $trail->parent('category');
-    $trail->push('Add New category');
+    $trail->push('Add New Category');
 });
 
 Breadcrumbs::for('category.storeOrUpdate', function (BreadcrumbTrail $trail) {
     $trail->parent('category');
     $trail->push('Update Category');
+});
+
+// Sub Categories
+Breadcrumbs::for('subCategory', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Sub Category List',  route('sub-category.list'));
+});
+
+Breadcrumbs::for('subCategory.createOrEdit', function (BreadcrumbTrail $trail) {
+    $trail->parent('subCategory');
+    $trail->push('Add New Sub Category');
+});
+
+Breadcrumbs::for('subCategory.storeOrUpdate', function (BreadcrumbTrail $trail) {
+    $trail->parent('subCategory');
+    $trail->push('Update Sub Category');
 });

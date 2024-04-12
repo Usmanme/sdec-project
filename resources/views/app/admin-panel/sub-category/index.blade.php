@@ -1,10 +1,10 @@
 @extends('app.layout.layout')
 
 @section('seo-breadcrumb')
-    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'category') }}
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'subCategory') }}
 @endsection
 
-@section('page-title', 'Categories')
+@section('page-title', 'Sub Categories')
 
 @section('page-vendor')
 
@@ -30,9 +30,9 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-start mb-0">Category List</h2>
+                <h2 class="content-header-title float-start mb-0">Sub Category List</h2>
                 <div class="breadcrumb-wrapper">
-                    {{ Breadcrumbs::render('category') }}
+                    {{ Breadcrumbs::render('subCategory') }}
                 </div>
             </div>
         </div>
@@ -43,12 +43,12 @@
 
 <div class="card">
     <div class="card-body">
-        <form id="category-datatable" action="{{route('category.delete')}}" method="get">
+        <form id="sub-category-datatable" action="{{route('sub-category.delete')}}" method="get">
             <div class="d-flex justify-content-between mb-1">
                 <div class="col-md-3">
-                    <a href="{{ route('category.createOrEdit') }}">
+                    <a href="{{ route('sub-category.createOrEdit') }}">
                         <button class="dt-button btn btn-relief-outline-primary waves-effect waves-float waves-light"
-                            tabindex="0" aria-controls="tutor-table" type="button"><span><i class="bi bi-plus"></i> Add Category
+                            tabindex="0" aria-controls="tutor-table" type="button"><span><i class="bi bi-plus"></i> Add Sub Category
                                 </span></button>
                     </a>
                 </div>
@@ -64,8 +64,9 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Category</th>
+                            <th>Sub Category</th>
                             <th>Description</th>
+                            <th>Category</th>
                             <th>Status</th>
                             <th>Created By</th>
                             <th>Created AT</th>
@@ -73,27 +74,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($data['categories'] as $category)
+                        @forelse ($data['subCategories'] as $subCategory)
                             <tr>
                                 <td>
                                     <div class="form-check"> <input class="form-check-input dt-checkboxes" type="checkbox"
-                                            value="{{ $category->id }}" name="chkTableRow[]"
+                                            value="{{ $subCategory->id }}" name="chkTableRow[]"
                                             onchange="changeTableRowColor(this)"
-                                            id="chkTableRow_{{ $category->id }}"><label class="form-check-label"
-                                            for="chkTableRow_{{ $category->id }}"></label></div>
+                                            id="chkTableRow_{{ $subCategory->id }}"><label class="form-check-label"
+                                            for="chkTableRow_{{ $subCategory->id }}"></label></div>
                                 </td>
-                                <td>{{ $category->name ?? '--' }}</td>
-                                <td>{{ \Str::limit($category->description,20) ?? '--' }}</td>
-
+                                <td>{{ $subCategory->name ?? '--' }}</td>
+                                <td>{{ \Str::limit($subCategory->description,20) ?? '--' }}</td>
                                 <td>
-                                    <span class="badge rounded-pill @if ($category->status == 'active') badge-light-primary @else badge-light-danger @endif ">{{ $category->status == 'active' ? 'Active' : 'Inactive' }}</span>
+                                    <span class="badge rounded-pill badge-light-secondary ">{{ $subCategory?->category?->name }}</span>
                                 </td>
-                                <td>{{ $category?->user->name ?? '--' }}</td>
-                                <td class="text-primary fw-bold">{{ $category->created_at ?? '' }}</td>
+                                <td>
+                                    <span class="badge rounded-pill @if ($subCategory->status == 'active') badge-light-primary @else badge-light-danger @endif ">{{ $subCategory->status == 'active' ? 'Active' : 'Inactive' }}</span>
+                                </td>
+                                <td>{{ $subCategory?->user->name ?? '--' }}</td>
+                                <td class="text-primary fw-bold">{{ $subCategory->created_at ?? '' }}</td>
                                 <td>
                                     <a class="btn btn-relief-outline-warning waves-effect waves-float waves-light"
                                         style="margin: 5px" data-bs-toggle="tooltip" data-bs-placement="top"
-                                        title="Edit Category" href="{{ route('category.createOrEdit',['id'=>encryptParams($category->id)]) }}">
+                                        title="Edit Category" href="{{ route('sub-category.createOrEdit',['id'=>encryptParams($subCategory->id)]) }}">
                                         <i class="bi bi-pencil" style="font-size: 1.1rem" class="m-10"></i>
                                     </a>
                                 </td>
@@ -110,7 +113,7 @@
                     </tbody>
                 </table>
                 <div class="mt-2 d-flex justify-content-end">
-                    {{ $data['categories']->links() }}
+                    {{ $data['subCategories']->links() }}
                 </div>
             </div>
         </form>
@@ -161,7 +164,7 @@
                 confirmButtonClass: 'btn-danger',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $('#category-datatable').submit();
+                    $('#sub-category-datatable').submit();
                 }
             });
         } else {

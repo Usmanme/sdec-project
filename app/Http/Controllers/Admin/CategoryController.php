@@ -16,7 +16,7 @@ class CategoryController extends Controller
         $this->category = $categoryInterface;
     }
 
-    public function index(CategoryDataTable $categoryDataTable)
+    public function index()
     {
         $data['categories'] = Category::with('user:id,name')->paginate(10);
         return view('app.admin-panel.category.index',compact('data'));

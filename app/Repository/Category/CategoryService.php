@@ -40,20 +40,20 @@ class CategoryService implements CategoryInterface
             DB::transaction(function() use($request, $category_status, $category_exists ,$id){
                 if(isset($category_exists) && $id != 0 && !is_null($id))
                 {
-                    $course = Category::find($id);
-                    // $category_image = Course::PATH.$course['image'];
+                    $category = Category::find($id);
+                    // $category_image = category::PATH.$category['image'];
                     // if(File::exists($category_image))
                     //     File::delete($category_image);
                 }
                 else
-                    $course = (new Category());
-                $course->name = $request['name'] ?? null;
-                $course->description = $request['description'] ?? null;
-                $course->status = $category_status ? 'active' : 'inactive';
-                $course->user_id = auth()->user()->id;
-                $course->created_at = now();
-                // $course->image = $this->storeImage(Category::PATH, $request['image'] ?? '');
-                $course->save();
+                    $category = (new Category());
+                $category->name = $request['name'] ?? null;
+                $category->description = $request['description'] ?? null;
+                $category->status = $category_status ? 'active' : 'inactive';
+                $category->user_id = auth()->user()->id;
+                $category->created_at = now();
+                // $category->image = $this->storeImage(Category::PATH, $request['image'] ?? '');
+                $category->save();
             });
         // }
         // catch (\Exception $ex)

@@ -11,8 +11,24 @@ class SubCategory extends Model
     use HasFactory, SoftDeletes;
 
     public $table = 'sub_categories';
-    public $fillable =
+    protected $fillable =
     [
-        'name','slug','description','status'
+        'name',
+        'slug',
+        'description',
+        'status',
+        'category_id'
     ];
+    public function scopeActive( $query )
+    {
+        return $query->where('status','active');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
