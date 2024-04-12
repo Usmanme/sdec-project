@@ -13,17 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
+            $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->longText('description')->nullable();
-            $table->string('program_code')->nullable();
-            $table->string('venue')->nullable();
-            $table->string('fee')->nullable();
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
-            $table->string('image')->nullable();
+            $table->string('description')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->foreignId('user_id')->constrained();
             $table->softDeletes();
@@ -38,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('categories');
     }
 };
