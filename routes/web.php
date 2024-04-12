@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\Category\CategoryController;
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 
@@ -32,6 +32,13 @@ Route::controller(CourseController::class)->middleware('auth')->prefix('course')
     Route::get('import-courses','importCourseForm')->name('course.importCourseForm');
     Route::post('import','importCourses')->name('course.import');
     Route::post('storeOrUpdate','storeOrUpdate')->name('course.storeOrUpdate');
+} );
+
+Route::controller(CategoryController::class)->middleware('auth')->prefix('category')->group( function () {
+    Route::get('/','index')->name('category.list');
+    Route::get('delete','deleteCategory')->name('category.delete');
+    Route::get('create/{id?}','createOrEdit')->name('category.createOrEdit');
+    Route::post('storeOrUpdate','storeOrUpdate')->name('category.storeOrUpdate');
 } );
 
 // Frontend Routes

@@ -67,6 +67,54 @@
             </li>
 
             <li class="navigation-header">
+                <span data-i18n="Pages">Categories</span>
+                <i data-feather="more-horizontal"></i>
+            </li>
+
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="javascript:void(0)">
+                    <i data-feather="grid"></i>
+                    <span class="menu-title text-truncate" data-i18n="Services">Category</span>
+                </a>
+                <ul class="menu-content">
+                    {{-- <li class="nav-item {{ request()->routeIs('categories') ? 'active' : null }}"> --}}
+                    <li class="nav-item">
+                        <a class="d-flex align-items-center" href="{{route('category.list')}}">
+                            <i class="bi bi-tags"></i>
+                            <span class="menu-title text-truncate" data-i18n="Email">Category List</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('category.createOrEdit') ? 'active' : null }}">
+                        <a class="d-flex align-items-center" href="{{ route('category.createOrEdit') }}">
+                            <i class="bi bi-tags"></i>
+                            <span class="menu-title text-truncate" data-i18n="Email">Add New</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="javascript:void(0)">
+                    <i data-feather="grid"></i>
+                    <span class="menu-title text-truncate" data-i18n="Services">Sub Category</span>
+                </a>
+                <ul class="menu-content">
+                    {{-- <li class="nav-item {{ request()->routeIs('categories') ? 'active' : null }}"> --}}
+                    <li class="nav-item">
+                        <a class="d-flex align-items-center" href="{{route('category.list')}}">
+                            <i class="bi bi-tags"></i>
+                            <span class="menu-title text-truncate" data-i18n="Email">Category List</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('category.createOrEdit') ? 'active' : null }}">
+                        <a class="d-flex align-items-center" href="{{ route('category.createOrEdit') }}">
+                            <i class="bi bi-tags"></i>
+                            <span class="menu-title text-truncate" data-i18n="Email">Add New</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="navigation-header">
                 <span data-i18n="Pages">Courses</span>
                 <i data-feather="more-horizontal"></i>
             </li>
@@ -92,6 +140,7 @@
                     </li>
                 </ul>
             </li>
+
 
         </ul>
     </div>

@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Course;
+use App\Observers\CategorySlug;
 use App\Observers\CourseSlugObserver;
+use App\Repository\Category\CategoryInterface;
+use App\Repository\Category\CategoryService;
 use App\Repository\Course\CourseInterface;
 use App\Repository\Course\CourseService;
 use Illuminate\Auth\Events\Registered;
@@ -31,7 +35,9 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Course::observe(CourseSlugObserver::class);
+        Category::observe(CategorySlug::class);
         $this->app->bind(CourseInterface::class,CourseService::class);
+        $this->app->bind(CategoryInterface::class,CategoryService::class);
     }
 
     /**
