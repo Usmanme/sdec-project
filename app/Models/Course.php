@@ -18,4 +18,9 @@ class Course extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function subCategoryCourse()
+    {
+        return $this->belongsTo(SubCategoryCourse::class);
+    }
 }

@@ -34,6 +34,7 @@ Route::controller(CourseController::class)->middleware('auth')->prefix('course')
     Route::get('import-courses','importCourseForm')->name('course.importCourseForm');
     Route::post('import','importCourses')->name('course.import');
     Route::post('storeOrUpdate','storeOrUpdate')->name('course.storeOrUpdate');
+    Route::get('subCategories','getSubCategories')->name('subCategories');
 } );
 
 Route::controller(CategoryController::class)->middleware('auth')->prefix('category')->group( function () {

@@ -86,12 +86,14 @@
                                 <td>{{ $subCategory->name ?? '--' }}</td>
                                 <td>{{ \Str::limit($subCategory->description,20) ?? '--' }}</td>
                                 <td>
-                                    <span class="badge rounded-pill badge-light-secondary ">{{ $subCategory?->category?->name }}</span>
+                                    <span class="badge rounded-pill badge-light-primary ">{{ $subCategory?->category?->name }}</span>
                                 </td>
                                 <td>
-                                    <span class="badge rounded-pill @if ($subCategory->status == 'active') badge-light-primary @else badge-light-danger @endif ">{{ $subCategory->status == 'active' ? 'Active' : 'Inactive' }}</span>
+                                    <span class="badge rounded-pill @if ($subCategory->status == 'active') badge-light-success @else badge-light-danger @endif ">{{ $subCategory->status == 'active' ? 'Active' : 'Inactive' }}</span>
                                 </td>
-                                <td>{{ $subCategory?->user->name ?? '--' }}</td>
+                                <td>
+                                    <span class="badge rounded-pill badge-light-secondary">{{ $subCategory?->user?->name ?? 'Admin' }}</span>
+                                </td>
                                 <td class="text-primary fw-bold">{{ $subCategory->created_at ?? '' }}</td>
                                 <td>
                                     <a class="btn btn-relief-outline-warning waves-effect waves-float waves-light"

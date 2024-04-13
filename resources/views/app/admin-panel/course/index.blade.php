@@ -84,6 +84,8 @@
                             <th>#</th>
                             <th>Course</th>
                             <th>Description</th>
+                            <th>Category</th>
+                            <th>Sub Category</th>
                             <th>Program Code</th>
                             <th>Venue</th>
                             <th>Fee</th>
@@ -107,15 +109,19 @@
                                 </td>
                                 <td>{{ $course->title ?? '--' }}</td>
                                 <td>{{ \Str::limit($course->description,20) ?? '--' }}</td>
+                                <td>{{$course->category??'--'}}</td>
+                                <td>{{$course->sub_category ?? '--'}}</td>
                                 <td>{{ $course->program_code ?? '--' }}</td>
                                 <td>{{ $course->venue ?? '--' }}</td>
                                 <td>{{ $course->fee ?? '--' }}</td>
                                 <td>{{ $course->start_date ?? '--' }}</td>
                                 <td>{{ $course->end_date ?? '--' }}</td>
                                 <td>
-                                    <span class="badge rounded-pill @if ($course->status == 'active') badge-light-primary @else badge-light-danger @endif ">{{ $course->status == 'active' ? 'Active' : 'Inactive' }}</span>
+                                    <span class="badge rounded-pill @if ($course->status == 'active') badge-light-success @else badge-light-danger @endif ">{{ $course->status == 'active' ? 'Active' : 'Inactive' }}</span>
                                 </td>
-                                <td>{{ $course?->user->name ?? '--' }}</td>
+                                <td>
+                                    <span class="badge rounded-pill badge-light-secondary">{{ $course->name ?? 'Admin'}}</span>
+                                </td>
                                 <td class="text-primary fw-bold">{{ $course->created_at ?? '' }}</td>
                                 <td>
                                     <a class="btn btn-relief-outline-warning waves-effect waves-float waves-light"

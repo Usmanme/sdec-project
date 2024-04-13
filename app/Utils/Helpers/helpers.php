@@ -5,13 +5,15 @@ use App\Models\{
     City,
     Country,
     SiteConfigration,
+    SubCategory,
+    SubCategoryCourse,
     Type,
     UserBatch,
 };
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\{Collection};
-use Illuminate\Support\Facades\{Crypt, File};
+use Illuminate\Support\Facades\{Crypt, DB, File};
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 // if (!function_exists('filter_strip_tags')) {
@@ -524,5 +526,50 @@ if (!function_exists('isNotZeroAndNull')) {
         }else {
             return false;
         }
+    }
+}
+
+if (!function_exists('getSubCategories')) {
+    function getSubCategories( $category_id ) {
+        return DB::select(DB::raw("SELECT id,name FROM sub_categories WHERE category_id='$category_id' AND deleted_at IS NULL"));
+    }
+}
+
+if (!function_exists('apiSuccessResponse')) {
+    function apiSuccessResponse($data = null, $key = 'success')
+    {
+        return response()->json(
+            [
+                'status' => true,
+                'status_code'=>200,
+                'data' => $data,
+            ]
+        );
+    }
+}
+
+if (!function_exists('apiErrorResponse')) {
+    function apiErrorResponse($message = 'data not found', $key = 'error')
+    {
+        return response()->json(
+            [
+                'status' => false,
+                'message' => $message,
+                'data' => null,
+                'stauts_code' => 400
+            ]
+        );
+    }
+}
+
+if(!function_exists('createSubCategoryCourse')) {
+    function createSubCategoryCourse( $data ) {
+        $sub_category_courses = new SubCategoryCourse();
+        $sub_category_courses->course_id = $data['course_id'];
+        $sub_category_courses->category_id = $data['category'];
+        $sub_category_courses->sub_category_id = $data['sub_category'];
+        $sub_category_courses->user_id = $data['user_id'];
+        $sub_category_courses->save();
+
     }
 }

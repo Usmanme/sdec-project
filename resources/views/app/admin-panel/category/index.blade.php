@@ -88,7 +88,9 @@
                                 <td>
                                     <span class="badge rounded-pill @if ($category->status == 'active') badge-light-primary @else badge-light-danger @endif ">{{ $category->status == 'active' ? 'Active' : 'Inactive' }}</span>
                                 </td>
-                                <td>{{ $category?->user->name ?? '--' }}</td>
+                                <td>
+                                    <span class="badge rounded-pill badge-light-secondary ">{{ $category?->user->name ?? 'Admin' }}</span>
+                                </td>
                                 <td class="text-primary fw-bold">{{ $category->created_at ?? '' }}</td>
                                 <td>
                                     <a class="btn btn-relief-outline-warning waves-effect waves-float waves-light"

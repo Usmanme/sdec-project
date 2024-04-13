@@ -1,7 +1,7 @@
-{{-- @dd($data['course']->venue) --}}
+{{-- @dd($data['course']->status) --}}
 <div class="row">
     <div class="col-lg-6 col-md-6 position-relative">
-        <input type="hidden" name="id" value="{{ isset($data['course']) ? $data['course']['id'] : 0 }}">
+        <input type="hidden" name="id" value="{{ isset($data['course']) ? $data['course']['course_id'] : 0 }}">
         <label for="name">Course</label>
         <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Course" value="{{ isset($data['course']) ? $data['course']['title'] : old('name') }}">
         @error('name')
@@ -61,7 +61,30 @@
         <input type="date" value="{{ isset($data['course']) ? $data['course']->end_date : old('end_date')}}" class="form-control @error('end_date') is-invalid @enderror" id="end_date" name="end_date">
         @error('end_date')
         <div class="invalid-tooltip">{{ $message }}</div>
-    @enderror
+        @enderror
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-6 col-md-6 position-relative">
+        <label for="meta_keyword">Categories</label>
+        <select name="category" id="category" class="form-control">
+            @forelse ($data['categories'] as $category)
+                <option value="{{$category->id}}" {{ isset($data['course']) && $data['course']->category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+            @empty
+                <option value="">--No Category Found--</option>
+            @endforelse
+        </select>
+        @error('category')
+            <div class="invalid-tooltip">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="col-lg-6 col-md-6 position-relative">
+        <label for="meta_keyword">Sub Categories</label>
+        <select name="sub_category" id="sub_category" class="form-control"></select>
+        @error('sub_category')
+            <div class="invalid-tooltip">{{ $message }}</div>
+        @enderror
     </div>
 </div>
 <br>
@@ -70,7 +93,7 @@
         <div class="d-flex flex-column">
             <label class="form-check-label mb-50" for="course_status">Status</label>
             <div class="form-check form-switch form-check-primary">
-                <input type="checkbox" class="form-check-input" id="course_status" name="course_status" @if(isset($data['course']) && $data['course']['status']=='active') checked @endif>
+                <input type="checkbox" class="form-check-input" id="course_status" name="course_status" @if(isset($data['course']) && $data['course']->status=='active') checked @endif>
                 <label class="form-check-label" for="course_status">
                     <span class="switch-icon-left"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                     <span class="switch-icon-right"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span>

@@ -13,6 +13,6 @@ class SubCategoryCourse extends Model
     public $table = 'sub_category_courses';
     public $fillable =
     [
-        'course_id','category_id','sub_category_id','user_id'
+        'course_id','category_id','sub_category_id'
     ];
 }

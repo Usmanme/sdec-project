@@ -71,7 +71,7 @@
                             <i data-feather='save'></i>
                             {{ $data['submit_button'] }}
                         </button>
-                        <a href="#"
+                        <a href="{{route('category.list')}}"
                             class="btn btn-relief-outline-danger waves-effect waves-float waves-light">
                             <i data-feather='x'></i>
                             Cancel

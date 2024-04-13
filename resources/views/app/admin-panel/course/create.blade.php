@@ -71,7 +71,7 @@
                             <i data-feather='save'></i>
                             {{ $data['submit_button'] }}
                         </button>
-                        <a href="#"
+                        <a href="{{route('course.list')}}"
                             class="btn btn-relief-outline-danger waves-effect waves-float waves-light">
                             <i data-feather='x'></i>
                             Cancel
@@ -98,11 +98,33 @@
 
 @section('custom-js')
 <script>
-
-    $(document).on('keyup', '#name', function(event){
-        let name = event.target.value;
-        name = name.replace(/[^a-zA-Z0-9]+/g,'-');
-        $('#slug').val(name);
+    $(document).ready(function () {
+        $('#category').trigger('change');
+    });
+    $(document).on('change','#category', function(){
+        let category_id = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: "{{route('subCategories')}}",
+            data: {category_id:category_id},
+            dataType: "json",
+            beforeSend:function(){
+                $('#sub_category').empty();
+            },
+            success: function (response) {
+                if(response.status) {
+                    let selected_sub_category = {{$data['course']->sub_category_id??0}};
+                    let html = '';
+                    $.each(response.data, function (index, value) {
+                        html+=`<option value=${value.id} ${selected_sub_category == value.id ? 'selected' : ''}>${value.name}</option>`;
+                    });
+                    $('#sub_category').append(html);
+                }else {
+                    let html = "<option value=''>--No Sub Category Found--</option>";
+                    $('#sub_category').append(html);
+                }
+            }
+        });
     });
 
     FilePond.registerPlugin(

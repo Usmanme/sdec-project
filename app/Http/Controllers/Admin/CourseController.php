@@ -7,6 +7,8 @@ use App\Imports\CourseImport;
 use App\Models\Course;
 use App\Repository\Course\CourseInterface;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
@@ -19,7 +21,13 @@ class CourseController extends Controller
 
     public function index ()
     {
-        $data['courses'] = Course::with('user:id,name')->paginate(10);
+        $data['courses'] = DB::table('courses')
+        ->leftJoin('users','courses.user_id','users.id')
+        ->leftJoin('sub_category_courses','courses.id','sub_category_courses.course_id')
+        ->leftJoin('categories','sub_category_courses.category_id','categories.id')
+        ->leftJoin('sub_categories','sub_category_courses.sub_category_id','sub_categories.id')
+        ->select('courses.id','courses.title','courses.description','courses.program_code','courses.venue','courses.fee','courses.start_date','courses.end_date','courses.status','courses.created_at','users.name','categories.name as category','sub_categories.name as sub_category')
+        ->paginate(10);
         return view('app.admin-panel.course.index',compact('data'));
     }
     public function createOrEdit( $id=null )
@@ -38,7 +46,9 @@ class CourseController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
             'id'=>'nullable',
-            'course_status'=>'nullable'
+            'course_status'=>'nullable',
+            'category'=> 'required|exists:categories,id',
+            'sub_category'=> 'required|exists:sub_categories,id',
         ]);
         $this->course->storeOrUpdate( $validated_data );
         return redirect()->route('course.list')->withSuccess('Course Added/Updated Successfully.');
@@ -74,6 +84,16 @@ class CourseController extends Controller
             return to_route('course.list')->withDanger($course_import->getFailureRecords().' are duplicate enteries/missing values.');
         }else {
             return to_route('course.list')->withSuccess('Course Imported.');
+        }
+    }
+
+    public function getSubCategories(Request $request)
+    {
+        $sub_categories = getSubCategories((int)$request->input('category_id'));
+        if( count($sub_categories)>0 && !is_null($sub_categories) ) {
+            return apiSuccessResponse( $sub_categories );
+        } else {
+            return apiErrorResponse();
         }
     }
 }
