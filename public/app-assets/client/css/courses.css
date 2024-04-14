@@ -1,0 +1,322 @@
+.form-select:not(.not-dark),
+    ::placeholder {
+        color: #fff !important;
+    }
+
+    .lcb,
+    .rcb {
+        padding: 0;
+        background-color: #fff;
+        margin: 0 0 20px 0;
+        width: 100%;
+    }
+
+    .lcb {
+        max-width: 100%;
+        min-width: 300px;
+    }
+
+    .lcb-head {
+        padding: 0 20px;
+    }
+
+    .lcb-head,
+    .rcb-head {
+        font-size: 1.55rem;
+        line-height: 1.2;
+        font-weight: 800;
+    }
+
+    .lcb-head span.lcb-title {
+        padding-bottom: 4px;
+        border-bottom: solid 3px #212121;
+    }
+
+    .lcb-body {
+        padding: 20px 20px 30px 20px;
+    }
+
+    .lcb-body,
+    .lcb-body p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    main section>:last-child,
+    main article>:last-child,
+    .education-description-wrapper>:last-child {
+        margin-bottom: 0;
+    }
+
+    title {
+        padding-bottom: 4px;
+        border-bottom: solid 3px #212121;
+    }
+
+    .fa-introbox ul {
+        width: 100%;
+        margin: 0 0 0 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: flex-start;
+        align-items: flex-start;
+    }
+
+    ul {
+        list-style-position: outside;
+        line-height: 1.6;
+    }
+
+    .fa-ul {
+        list-style-type: none;
+    }
+
+    .fa-ul>li {
+        position: relative;
+    }
+
+    .fa-introbox li {
+        display: inline-block;
+        flex: 0 1 31%;
+        min-width: 31%;
+    }
+
+    .lcb li,
+    .rcb li {
+        margin: 0 0 0 10px;
+    }
+
+    .fa-introbox a.list-group-item {
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        position: relative;
+        display: inline-block;
+        padding: 4px 30px 4px 10px;
+        font-size: 14.5px;
+        margin-bottom: 13px;
+        letter-spacing: -.2px;
+        color: #414141;
+        font-weight: 300;
+        border: none;
+    }
+
+    .emg-pga,
+    .row.emg-pga {
+        padding-bottom: 26px;
+        margin: 0 0 26px 0;
+        border-bottom: solid 1px #efefef;
+    }
+
+    .emg-pga .pga-col-media {
+        width: 34%;
+        padding: 0;
+        position: relative;
+    }
+
+    img {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 80%;
+        height: auto;
+        -ms-interpolation-mode: bicubic;
+    }
+
+    .column:last-child:not(:first-child),
+    .columns:last-child:not(:first-child) {
+        float: right;
+    }
+
+    .emg-pga .pga-col-content {
+        width: 66%;
+        padding: 0 0 0 14px;
+    }
+
+    .emg-pga .pga-subtitle {
+        margin-bottom: -6px;
+    }
+
+    .entry-content {
+        margin: 0px !important;
+    }
+
+    .description {
+        text-align: center;
+        width: 43%;
+    }
+
+    .clientImage {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .clientImage span {
+        margin-left: 10px;
+    }
+
+    .clientImage img {
+        width: 40px;
+        border-radius: 50%;
+    }
+
+    .reviewSection {
+        padding: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .reviewItem {
+        width: 300px;
+        padding: 10px;
+        margin: 1rem;
+        cursor: pointer;
+        border-radius: 10px;
+        background-color: #10102a;
+        border: 1px solid #10102a;
+        transition: all .2s linear;
+    }
+
+    .reviewItem:hover {
+        border-color: aqua;
+        transform: scale(1.01);
+        background-color: #090921;
+        box-shadow: 0 0px 5px 0px #cbc0c0;
+    }
+
+    .top {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .top ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .top ul li {
+        padding-left: 4px;
+    }
+
+    article p {
+        font-size: 15px;
+        font-weight: 100;
+        margin-bottom: 1rem;
+        font-family: system-ui;
+    }
+
+    .banner-text {
+        display: flex;
+        flex-direction: column;
+        max-width: 570px;
+    }
+
+    .review,
+    .clientImage span {
+        color: #fff;
+    }
+
+    .entry-meta p {
+        color: #000;
+    }
+
+    .lcb:last-of-type {
+        margin-bottom: 20px;
+    }
+
+    .lcb,
+    .rcb {
+        padding: 0;
+        background-color: #fff;
+        margin: 0 0 20px 0;
+        width: 100%;
+    }
+
+    .lcb-head {
+        padding: 0 20px;
+    }
+
+    .lcb-head,
+    .rcb-head {
+        font-size: 1.55rem;
+        line-height: 1.2;
+        font-weight: 800;
+    }
+
+    .lcb-head span.lcb-title {
+        padding-bottom: 4px;
+        border-bottom: solid 3px #212121;
+    }
+
+    .lcb-body {
+        padding: 20px 20px 30px 20px;
+    }
+
+    h3,
+    .h3 {
+        color: #212121;
+        font-size: 18px;
+    }
+
+    .lcb-body,
+    .lcb-body p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .emg-columns {
+        display: flex;
+        flex-wrap: wrap;
+        clear: both;
+        max-width: 100%;
+        gap: 50px;
+    }
+
+    .emg-column ul {
+        margin-bottom: 0 !important;
+    }
+    .form-select.categories-dropdown, .form-select .sub-categories-dropdown,.form-control .search-box {
+        color: #ffffff;
+    }
+
+
+    @media screen and (max-width:700px) {
+        .container {
+            height: auto;
+        }
+
+        .description {
+            width: 90%;
+        }
+    }
+
+    @media screen and (max-width:375px) {
+        .reviewSection {
+            padding: 0;
+        }
+
+        .reviewItem {
+            width: 100%;
+        }
+
+        .clientImage {
+            margin-bottom: 0.6rem;
+        }
+
+        .top {
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    #corses-singel {
+        padding-top: 40px;
+        padding-bottom: 70px;
+    }

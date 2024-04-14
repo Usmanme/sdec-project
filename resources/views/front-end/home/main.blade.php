@@ -2,7 +2,9 @@
 @section('title','Home')
 @section('description','Home Descripiton.')
 @section('keywords','Home Keywords')
-
+@section('page-css')
+<link rel="stylesheet" href="{{asset('app-assets')}}/client/css/courses.css">
+@endsection
 @section('content')
 <div id="wrapper" class="clearfix">
 
@@ -14,7 +16,36 @@
                     <div class="heading-block text-center border-bottom-0">
                         <h1>The Apple WWDC Event starts in:</h1>
                     </div>
+                    <div class="heading-block text-center border-bottom-0">
+                        <div class="banner-text">
+                            <p><strong>PROFESSIONAL & PERSONAL DEVELOPMENT COURSES</strong></p>
+                            <h2>Ready to become the best you?
+                                Find courses to help you grow</h2>
+                            <p>Whether you’re looking for professional courses, an evening fitness class or want to get
+                                your career started, you’ve come to the right place. Search and compare courses today!
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <select name="" id="" class="form-select categories-dropdown">
+                                    <option value="Course">Categories</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <select name="" id="" class="form-select sub-categories-dropdown">
+                                    <option value="Course">Sub Categories</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control search-box" placeholder="Type in the course">
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-success w-100">Search</button>
+                            </div>
 
+                        </div>
+                        {{-- <h1>The Apple WWDC Event starts in:</h1> --}}
+                    </div>
                     <div id="countdown-ex1" class="countdown countdown-large coming-soon mx-auto" data-year="2021" style="max-width:700px;"></div>
 
                     <div class="text-center topmargin-lg">

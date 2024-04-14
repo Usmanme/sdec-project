@@ -5633,7 +5633,7 @@ body:not(.top-search-open) .top-search-parent .header-misc > *:not(#top-search) 
 }
 
 .slider-inner {
-	position: absolute;
+	/* position: absolute; */
 	overflow: hidden;
 	opacity: 1;
 	visibility: visible;

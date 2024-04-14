@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Models\SubCategoryCourse;
@@ -18,8 +19,15 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'auth.php';
 
 Route::group([
 ], function () {
-    Route::get('/', function () {
-        return view('front-end.home.main');
+    Route::controller(HomeController::class)->group( function () {
+        Route::get('/','home')->name('homepage');
+    } );
+    // Route::get('/', function () {
+    //     return view('front-end.home.main');
+    // });
+
+    Route::get('single-course',function(){
+        return view('front-end.course.single-course');
     });
 
     Route::get('admin/login',function(){
