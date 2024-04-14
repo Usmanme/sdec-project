@@ -19,6 +19,10 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'auth.php';
 Route::group([
 ], function () {
     Route::get('/', function () {
+        return view('front-end.home.main');
+    });
+
+    Route::get('admin/login',function(){
         return redirect()->route('login.view');
     });
 
