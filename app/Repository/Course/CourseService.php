@@ -62,7 +62,6 @@ class CourseService implements CourseInterface
             {
                 $course = Course::find($id);
                 $sub_category_courses = SubCategoryCourse::where('course_id',$course->id)->first();
-                // dd($sub_category_courses);
                 if(!is_null($sub_category_courses))
                 {
                     $sub_category_courses->category_id = $request['category'];
@@ -79,7 +78,6 @@ class CourseService implements CourseInterface
                         'user_id'       => auth()->user()->id
                     ];
                     $sub_category_courses = createSubCategoryCourse($data);
-                    // dd($sub_category_courses);
                 }
             }
             else
@@ -99,18 +97,18 @@ class CourseService implements CourseInterface
             // $course->image = $this->storeImage(Category::PATH, $request['image'] ?? '');
             $course->save();
 
-            if(!isset($id))
-            {
-                $data =
-                [
-                    'course_id'     => $course->id,
-                    'category'   => (int)$request['category'],
-                    'sub_category'  => (int)$request['sub_category'],
-                    'user_id'       => auth()->user()->id
-                ];
-                $sub_category_courses = createSubCategoryCourse($data);
-            }
-            else{
+            // if(!isset($id))
+            // {
+            //     $data =
+            //     [
+            //         'course_id'     => $course->id,
+            //         'category'   => (int)$request['category'],
+            //         'sub_category'  => (int)$request['sub_category'],
+            //         'user_id'       => auth()->user()->id
+            //     ];
+            //     $sub_category_courses = createSubCategoryCourse($data);
+            // }
+            // else{
 
                 $data =
                 [
@@ -120,7 +118,7 @@ class CourseService implements CourseInterface
                     'user_id'       => auth()->user()->id
                 ];
                 $sub_category_courses = createSubCategoryCourse($data);
-            }
+            // }
         });
         // return true;
     }

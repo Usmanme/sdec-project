@@ -14,6 +14,10 @@ class Course extends Model
     [
         'title','description','program_code','venue','fee','start_date','end_date','status','image'
     ];
+    public function scopeActive( $query )
+    {
+        return $query->where('status','active');
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
