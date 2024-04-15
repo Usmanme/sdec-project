@@ -52,6 +52,7 @@ class CourseService implements CourseInterface
 
     public function storeOrUpdate($request)
     {
+        // dump($request);
         $course_status = array_key_exists('course_status' ,$request);
         $course_exists = array_key_exists('id' ,$request);
         $id = (int)$request['id'];
@@ -61,6 +62,7 @@ class CourseService implements CourseInterface
             {
                 $course = Course::find($id);
                 $sub_category_courses = SubCategoryCourse::where('course_id',$course->id)->first();
+                // dd($sub_category_courses);
                 if(!is_null($sub_category_courses))
                 {
                     $sub_category_courses->category_id = $request['category'];
@@ -76,11 +78,14 @@ class CourseService implements CourseInterface
                         'sub_category'  => (int)$request['sub_category'],
                         'user_id'       => auth()->user()->id
                     ];
-                    createSubCategoryCourse($data);
+                    $sub_category_courses = createSubCategoryCourse($data);
+                    // dd($sub_category_courses);
                 }
             }
             else
+            {
                 $course = (new Course());
+            }
             $course->title = $request['name'] ?? null;
             $course->description = $request['description'] ?? null;
             $course->program_code = $request['program_code'] ?? null;
@@ -89,7 +94,7 @@ class CourseService implements CourseInterface
             $course->start_date = $request['start_date'] ?? null;
             $course->end_date = $request['end_date'] ?? null;
             $course->status = $course_status ? 'active' : 'inactive';
-            $course->user_id = auth()->user()->id;
+            $course->user_id = auth()?->user()?->id;
             $course->created_at = now();
             // $course->image = $this->storeImage(Category::PATH, $request['image'] ?? '');
             $course->save();
@@ -103,10 +108,21 @@ class CourseService implements CourseInterface
                     'sub_category'  => (int)$request['sub_category'],
                     'user_id'       => auth()->user()->id
                 ];
-                createSubCategoryCourse($data);
+                $sub_category_courses = createSubCategoryCourse($data);
             }
+            else{
 
+                $data =
+                [
+                    'course_id'     => $course->id,
+                    'category'   => (int)$request['category'],
+                    'sub_category'  => (int)$request['sub_category'],
+                    'user_id'       => auth()->user()->id
+                ];
+                $sub_category_courses = createSubCategoryCourse($data);
+            }
         });
+        // return true;
     }
 
     public function deleteCourse($ids)
@@ -116,9 +132,8 @@ class CourseService implements CourseInterface
             $courses = Course::whereIn('id', $ids)->get();
             foreach($courses as $course)
             {
-                // $category_image = Category::PATH.$category->image;
-                // if(File::exists($category_image))
-                //     File::delete($category_image);
+                $sub_category_courses = SubCategoryCourse::where('course_id',$course['id'])->first();
+                $sub_category_courses->delete();
                 $course->delete();
             }
             return redirect()->back()->withSuccess("Course Deleted Successfully.");

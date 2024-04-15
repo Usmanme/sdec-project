@@ -114,6 +114,7 @@
             success: function (response) {
                 if(response.status) {
                     let selected_sub_category = {{$data['course']->sub_category_id??0}};
+                    console.log("selected_sub_category",selected_sub_category);
                     let html = '';
                     $.each(response.data, function (index, value) {
                         html+=`<option value=${value.id} ${selected_sub_category == value.id ? 'selected' : ''}>${value.name}</option>`;

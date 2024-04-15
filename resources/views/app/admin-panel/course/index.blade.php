@@ -87,7 +87,6 @@
                             <th>Category</th>
                             <th>Sub Category</th>
                             <th>Program Code</th>
-                            <th>Venue</th>
                             <th>Fee</th>
                             <th>Start Date</th>
                             <th>End Date</th>
@@ -112,7 +111,6 @@
                                 <td>{{$course->category??'--'}}</td>
                                 <td>{{$course->sub_category ?? '--'}}</td>
                                 <td>{{ $course->program_code ?? '--' }}</td>
-                                <td>{{ $course->venue ?? '--' }}</td>
                                 <td>{{ $course->fee ?? '--' }}</td>
                                 <td>{{ $course->start_date ?? '--' }}</td>
                                 <td>{{ $course->end_date ?? '--' }}</td>

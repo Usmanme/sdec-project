@@ -570,6 +570,7 @@ if(!function_exists('createSubCategoryCourse')) {
         $sub_category_courses->sub_category_id = $data['sub_category'];
         $sub_category_courses->user_id = $data['user_id'];
         $sub_category_courses->save();
+        return $sub_category_courses;
 
     }
 }
