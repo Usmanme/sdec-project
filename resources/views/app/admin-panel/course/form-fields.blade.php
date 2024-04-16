@@ -1,7 +1,6 @@
-{{-- @dd($data['course']->status) --}}
 <div class="row">
     <div class="col-lg-6 col-md-6 position-relative">
-        <input type="hidden" name="id" value="{{ isset($data['course']) ? $data['course']['course_id'] : 0 }}">
+        <input type="hidden" name="id" value="{{ isset($data['course']) ? $data['course']['id'] : 0 }}">
         <label for="name">Course</label>
         <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Course" value="{{ isset($data['course']) ? $data['course']['title'] : old('name') }}">
         @error('name')
@@ -70,7 +69,7 @@
         <label for="meta_keyword">Categories</label>
         <select name="category" id="category" class="form-control">
             @forelse ($data['categories'] as $category)
-                <option value="{{$category->id}}" {{ isset($data['course']) && $data['course']->category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+                <option value="{{$category->id}}" {{ isset($data['course']) && $data['course']?->singleCourseCategory?->category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
             @empty
                 <option value="">--No Category Found--</option>
             @endforelse

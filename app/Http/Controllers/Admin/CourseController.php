@@ -21,15 +21,7 @@ class CourseController extends Controller
 
     public function index ()
     {
-        $data['courses'] = DB::table('courses')
-        ->leftJoin('users','courses.user_id','users.id')
-        ->leftJoin('sub_category_courses','courses.id','sub_category_courses.course_id')
-        ->leftJoin('categories','sub_category_courses.category_id','categories.id')
-        ->leftJoin('sub_categories','sub_category_courses.sub_category_id','sub_categories.id')
-        ->select('courses.id','courses.title','courses.description','courses.program_code','courses.fee','courses.start_date','courses.end_date','courses.status','courses.created_at','users.name','categories.name as category','sub_categories.name as sub_category')
-        ->where('courses.deleted_at',null)
-        ->paginate(10);
-        // dd($data['courses']);
+        $data['courses'] = Course::with('user:id,name','category','subCategories')->paginate(10);
         return view('app.admin-panel.course.index',compact('data'));
     }
     public function createOrEdit( $id=null )

@@ -116,10 +116,11 @@
             },
             success: function (response) {
                 if(response.status) {
-                    let selected_sub_category = {{$data['course']->sub_category_id??0}};
+                    let selected_sub_category = {!! json_encode($data['subCategories'] ?? []) !!}
                     let html = '';
                     $.each(response.data, function (index, value) {
-                        html+=`<option value=${value.id} ${selected_sub_category == value.id ? 'selected' : ''}>${value.name}</option>`;
+                        let isSelected = selected_sub_category.includes(value.id);
+                        html+=`<option value=${value.id} ${isSelected? 'selected' : ''}>${value.name}</option>`;
                     });
                     $('#sub_category').append(html);
                 }else {

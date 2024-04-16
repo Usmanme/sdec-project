@@ -85,7 +85,7 @@
                             <th>Course</th>
                             <th>Description</th>
                             <th>Category</th>
-                            <th>Sub Category</th>
+                            {{-- <th>Sub Category</th> --}}
                             <th>Program Code</th>
                             <th>Fee</th>
                             <th>Start Date</th>
@@ -108,8 +108,8 @@
                                 </td>
                                 <td>{{ $course->title ?? '--' }}</td>
                                 <td>{{ \Str::limit($course->description,20) ?? '--' }}</td>
-                                <td>{{$course->category??'--'}}</td>
-                                <td>{{$course->sub_category ?? '--'}}</td>
+                                <td>{{$course?->category?->name??'--'}}</td>
+
                                 <td>{{ $course->program_code ?? '--' }}</td>
                                 <td>{{ $course->fee ?? '--' }}</td>
                                 <td>{{ $course->start_date ?? '--' }}</td>

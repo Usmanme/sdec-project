@@ -26,35 +26,26 @@ class CourseService implements CourseInterface
         $data['categories'] = Category::active()->get(['id','name']);
         if(isset($id) && !is_null($id))
         {
+            $data['subCategories'] = [];
             $id = (int)decryptParams($id);
             $data['title'] = "Update Course";
-            $data['course'] = Course::leftJoin('sub_category_courses','courses.id','=','sub_category_courses.course_id')
-            ->select('courses.id as course_id','courses.title','courses.description','courses.program_code','courses.venue','courses.fee','courses.start_date','courses.end_date','courses.status','sub_category_courses.category_id','sub_category_courses.sub_category_id')
-            ->where('courses.id',$id)
-            ->first();
-            // $data['courses'] = Course::with('subCategoryCourse')->find($id);
-            // dd($data['courses']);
-            // Course::leftJoin('sub_category_courses', 'courses.id', '=', 'sub_category_courses.course_id')
-            // ->select('courses.id as course_id', 'courses.title', 'courses.description', 'courses.program_code', 'courses.venue', 'courses.fee', 'courses.start_date', 'courses.end_date', 'courses.status', 'sub_category_courses.category_id', 'sub_category_courses.sub_category_id')
-            // ->where('courses.id', $id)
-            // ->first();
+            $subCategories=[];
+            $data['course'] = Course::with('singleCourseCategory:id,course_id,category_id')->find($id);
+            $data['subCategories'] = $data['course']->subCategoryCourse->pluck('sub_category_id')->toArray();
             if ($data['course'] && !$data['course']->category_id && !$data['course']->sub_category_id) {
                 $data['course']->category_id = null; // or set to default value
                 $data['course']->sub_category_id = null; // or set to default value
             }
-            // dd($data);
             $data['breadcrumb'] = 'course.storeOrUpdate';
             $data['page_title'] = 'Update Course';
             $data['submit_button'] = 'Update Course';
         }
-        // dd($data['course']);
         return view("app.admin-panel.course.create",compact('data'));
 
     }
 
     public function storeOrUpdate($request)
     {
-        // dd($request);
         $course_status = array_key_exists('course_status' ,$request);
         $course_exists = array_key_exists('id' ,$request);
         $id = (int)$request['id'];
@@ -63,12 +54,16 @@ class CourseService implements CourseInterface
             if(isset($course_exists) && $id != 0)
             {
                 $course = Course::find($id);
+                SubCategoryCourse::where('course_id',$course->id)->get()->each( function($cate){$cate->delete();} );
                 $sub_category_courses = SubCategoryCourse::where('course_id',$course->id)->first();
                 if(!is_null($sub_category_courses))
                 {
-                    $sub_category_courses->category_id = $request['category'];
-                    $sub_category_courses->sub_category_id = $request['sub_category'];
-                    $sub_category_courses->save();
+                    foreach( $request['sub_category'] as $sub_category )
+                    {
+                        $sub_category_courses->category_id = $request['category'];
+                        $sub_category_courses->sub_category_id = (int)$sub_category;
+                        $sub_category_courses->save();
+                    }
                 }
                 else
                 {
@@ -122,7 +117,7 @@ class CourseService implements CourseInterface
                 $sub_category_courses = createSubCategoryCourse($data);
             // }
         });
-        // return true;
+        return true;
     }
 
     public function deleteCourse($ids)
