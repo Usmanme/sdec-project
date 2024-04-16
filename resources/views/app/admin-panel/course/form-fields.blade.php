@@ -81,7 +81,7 @@
     </div>
     <div class="col-lg-6 col-md-6 position-relative">
         <label for="meta_keyword">Sub Categories</label>
-        <select name="sub_category" id="sub_category" class="form-control"></select>
+        <select name="sub_category[]" id="sub_category" class="form-control select2" multiple></select>
         @error('sub_category')
             <div class="invalid-tooltip">{{ $message }}</div>
         @enderror

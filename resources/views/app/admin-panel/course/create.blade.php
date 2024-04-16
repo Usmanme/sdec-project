@@ -98,6 +98,9 @@
 
 @section('custom-js')
 <script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
     $(document).ready(function () {
         $('#category').trigger('change');
     });

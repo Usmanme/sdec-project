@@ -25,6 +25,6 @@ class Course extends Model
 
     public function subCategoryCourse()
     {
-        return $this->belongsTo(SubCategoryCourse::class);
+        return $this->belongsTo(SubCategoryCourse::class,'id','course_id');
     }
 }

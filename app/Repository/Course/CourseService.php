@@ -32,6 +32,8 @@ class CourseService implements CourseInterface
             ->select('courses.id as course_id','courses.title','courses.description','courses.program_code','courses.venue','courses.fee','courses.start_date','courses.end_date','courses.status','sub_category_courses.category_id','sub_category_courses.sub_category_id')
             ->where('courses.id',$id)
             ->first();
+            // $data['courses'] = Course::with('subCategoryCourse')->find($id);
+            // dd($data['courses']);
             // Course::leftJoin('sub_category_courses', 'courses.id', '=', 'sub_category_courses.course_id')
             // ->select('courses.id as course_id', 'courses.title', 'courses.description', 'courses.program_code', 'courses.venue', 'courses.fee', 'courses.start_date', 'courses.end_date', 'courses.status', 'sub_category_courses.category_id', 'sub_category_courses.sub_category_id')
             // ->where('courses.id', $id)
@@ -52,7 +54,7 @@ class CourseService implements CourseInterface
 
     public function storeOrUpdate($request)
     {
-        // dump($request);
+        // dd($request);
         $course_status = array_key_exists('course_status' ,$request);
         $course_exists = array_key_exists('id' ,$request);
         $id = (int)$request['id'];
@@ -74,7 +76,7 @@ class CourseService implements CourseInterface
                     [
                         'course_id'     => $course->id,
                         'category'   => (int)$request['category'],
-                        'sub_category'  => (int)$request['sub_category'],
+                        'sub_categories'  => (array)$request['sub_category'],
                         'user_id'       => auth()->user()->id
                     ];
                     $sub_category_courses = createSubCategoryCourse($data);
@@ -114,7 +116,7 @@ class CourseService implements CourseInterface
                 [
                     'course_id'     => $course->id,
                     'category'   => (int)$request['category'],
-                    'sub_category'  => (int)$request['sub_category'],
+                    'sub_categories'  => (array)$request['sub_category'],
                     'user_id'       => auth()->user()->id
                 ];
                 $sub_category_courses = createSubCategoryCourse($data);

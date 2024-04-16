@@ -564,13 +564,17 @@ if (!function_exists('apiErrorResponse')) {
 
 if(!function_exists('createSubCategoryCourse')) {
     function createSubCategoryCourse( $data ) {
-        $sub_category_courses = new SubCategoryCourse();
-        $sub_category_courses->course_id = $data['course_id'];
-        $sub_category_courses->category_id = $data['category'];
-        $sub_category_courses->sub_category_id = $data['sub_category'];
-        $sub_category_courses->user_id = $data['user_id'];
-        $sub_category_courses->save();
-        return $sub_category_courses;
+        // dd($data['sub_categories']);
+        foreach( $data['sub_categories'] as $sub_category) {
+            // dd($sub_category);
+            $sub_category_courses = new SubCategoryCourse();
+            $sub_category_courses->course_id = (int)$data['course_id'];
+            $sub_category_courses->category_id = (int)$data['category'];
+            $sub_category_courses->sub_category_id = (int)$sub_category;
+            $sub_category_courses->user_id = (int)$data['user_id'];
+            $sub_category_courses->save();
+            return $sub_category_courses;
+        }
 
     }
 }
