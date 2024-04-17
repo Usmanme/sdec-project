@@ -21,7 +21,7 @@ class CourseController extends Controller
 
     public function index ()
     {
-        $data['courses'] = Course::with('user:id,name','category','subCategories')->paginate(10);
+        $data['courses'] = Course::with('user:id,name','category')->paginate(10);
         return view('app.admin-panel.course.index',compact('data'));
     }
     public function createOrEdit( $id=null )

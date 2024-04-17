@@ -31,7 +31,7 @@ class Course extends Model
 
     public function singleCourseCategory() :HasOne
     {
-        return $this->hasOne(SubCategoryCourse::class);
+        return $this->hasOne(SubCategoryCourse::class,'id','course_id');
     }
 
     public function category()
@@ -46,15 +46,5 @@ class Course extends Model
         )->select('categories.id', 'categories.name');
     }
 
-    public function subCategories()
-    {
-        return $this->hasManyThrough(
-            SubCategory::class, // Target model
-            SubCategoryCourse::class, // Intermediate model
-            'course_id', // Foreign key on intermediate model
-            'id', // Local key on this model
-            'id', // Local key on target model
-            'sub_category_id' // Foreign key on intermediate model
-        )->select('sub_categories.id', 'sub_categories.name');
-    }
+
 }
