@@ -31,7 +31,7 @@ class Course extends Model
 
     public function singleCourseCategory() :HasOne
     {
-        return $this->hasOne(SubCategoryCourse::class,'id','course_id');
+        return $this->hasOne(SubCategoryCourse::class,'course_id','id');
     }
 
     public function category()
