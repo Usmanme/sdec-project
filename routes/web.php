@@ -19,9 +19,7 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'auth.php';
 
 Route::group([
 ], function () {
-    Route::controller(HomeController::class)->group( function () {
-        Route::get('/','home')->name('homepage');
-    } );
+
     // Route::get('/', function () {
     //     return view('front-end.home.main');
     // });
@@ -64,9 +62,11 @@ Route::controller(SubCategoryController::class)->middleware('auth')->prefix('sub
 } );
 
 // Frontend Routes
-Route::get('/homepage', function () {
-    return view('front-end/home/main');
-});
+Route::controller(HomeController::class)->group( function () {
+    Route::get('/','home')->name('homepage');
+    Route::get('subCategories','getSubCategories')->name('categorySubCategories');
+} );
+
 Route::get('/single-course', function () {
     return view('front-end/course/single-course');
 });
