@@ -11,9 +11,10 @@ class HomeController extends Controller
 {
     public function home ( Request $request )
     {
-        $data['courses'] = Course::active();
+        $data['courses'] = Course::with('singleCourseCategory')->active();
         if( $request->ajax() ) {
-            $data['courses'] = $data['courses']->join('sub_category_courses','courses.id','sub_category_courses.course_id')
+            $data['courses'] = $data['courses']
+            // ->join('sub_category_courses','courses.id','sub_category_courses.course_id')
             ->where('sub_category_courses.category_id',$request->input('category'))
             ->where('sub_category_courses.sub_category_id',$request->input('sub_category'));
             if( !is_null($request->input('course_name')) ){
