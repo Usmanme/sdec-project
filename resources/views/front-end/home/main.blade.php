@@ -28,8 +28,9 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <select name="" id="category" class="form-select categories-dropdown">
+                                    <option value="">--Select Category--</option>
                                     @forelse ($data['categories'] as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
                                     @empty
                                         <option value="">--No Category Found--</option>
                                     @endforelse
@@ -86,6 +87,8 @@
                         <h2>No Course Found</h2>
                     @endforelse
 
+
+
                     {{-- <div class="col-sm-6 col-lg-3">
                         <div class="feature-box fbox-effect fbox-center fbox-outline fbox-dark border-bottom-0">
                             <div class="fbox-icon">
@@ -118,6 +121,10 @@
                             </div>
                         </div>
                     </div> --}}
+                </div>
+
+                <div class="not-found d-none">
+                    <center><h2>No Course Found</h2></center>
                 </div>
 
                 <div class="divider divider-sm divider-center"><i class="icon-circle-blank"></i></div>
@@ -453,7 +460,7 @@
         let category_id = $(this).val();
         $.ajax({
             type: "GET",
-            url: "{{route('subCategories')}}",
+            url: "{{route('categorySubCategories')}}",
             data: {category_id:category_id},
             dataType: "json",
             beforeSend:function(){
@@ -492,20 +499,25 @@
                 $('#courses-section').empty();
             },
             success: function (response) {
-                let html = '';
-                response.data.forEach(course => {
-                    html+=`<div class='col-sm-6 col-lg-3'>
-                            <div class='feature-box fbox-effect fbox-center fbox-outline fbox-dark border-bottom-0'>
-                                <div class='fbox-icon'>
-                                    <a href='#''><i class='icon-calendar i-alt'></i></a>
+                if(response.data.length>0) {
+                    $('.not-found').addClass('d-none');
+                    let html = '';
+                    response.data.forEach(course => {
+                        html+=`<div class='col-sm-6 col-lg-3'>
+                                <div class='feature-box fbox-effect fbox-center fbox-outline fbox-dark border-bottom-0'>
+                                    <div class='fbox-icon'>
+                                        <a href='#''><i class='icon-calendar i-alt'></i></a>
+                                    </div>
+                                    <div class='fbox-content'>
+                                        <h3>${course.title}<span class='subtitle'>${course.description}</span></h3>
+                                    </div>
                                 </div>
-                                <div class='fbox-content'>
-                                    <h3>${course.title}<span class='subtitle'>${course.description}</span></h3>
-                                </div>
-                            </div>
-                        </div>`;
-                });
-                $('#courses-section').append(html);
+                            </div>`;
+                    });
+                    $('#courses-section').append(html);
+                } else {
+                    $('.not-found').removeClass('d-none');
+                }
             }
         });
     })
