@@ -3,10 +3,10 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Models\SubCategoryCourse;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +59,13 @@ Route::controller(SubCategoryController::class)->middleware('auth')->prefix('sub
     Route::get('delete','deleteSubCategory')->name('sub-category.delete');
     Route::get('create/{id?}','createOrEdit')->name('sub-category.createOrEdit');
     Route::post('storeOrUpdate','storeOrUpdate')->name('sub-category.storeOrUpdate');
+} );
+
+Route::controller(EventController::class)->middleware('auth')->prefix('event')->group( function () {
+    Route::get('/','index')->name('event_list');
+    Route::get('create/{id?}','createOrEdit')->name('event.createOrEdit');
+    Route::post('storeOrUpdate','storeOrUpdate')->name('event.storeOrUpdate');
+    Route::get('delete','deleteEvent')->name('event.delete');
 } );
 
 // Frontend Routes

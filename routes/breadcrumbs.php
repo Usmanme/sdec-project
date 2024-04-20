@@ -59,3 +59,19 @@ Breadcrumbs::for('subCategory.storeOrUpdate', function (BreadcrumbTrail $trail) 
     $trail->parent('subCategory');
     $trail->push('Update Sub Category');
 });
+
+// Events
+Breadcrumbs::for('events', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Events List',  route('event_list'));
+});
+
+Breadcrumbs::for('event.createOrEdit', function (BreadcrumbTrail $trail) {
+    $trail->parent('events');
+    $trail->push('Add New Event');
+});
+
+Breadcrumbs::for('event.storeOrUpdate', function (BreadcrumbTrail $trail) {
+    $trail->parent('events');
+    $trail->push('Update Event');
+});

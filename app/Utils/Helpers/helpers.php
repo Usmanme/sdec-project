@@ -576,3 +576,13 @@ if(!function_exists('createSubCategoryCourse')) {
 
     }
 }
+
+if (!function_exists('deleteImg')) {
+
+    function deleteImg($path,$img) {
+        if (File::exists($path.$img)) {
+            File::delete($path.$img);
+        }
+    }
+
+}

@@ -10,6 +10,8 @@ use App\Repository\Category\CategoryInterface;
 use App\Repository\Category\CategoryService;
 use App\Repository\Course\CourseInterface;
 use App\Repository\Course\CourseService;
+use App\Repository\Event\EventInterface;
+use App\Repository\Event\EventService;
 use App\Repository\SubCategory\SubCategoryInterface;
 use App\Repository\SubCategory\SubCategoryService;
 use Illuminate\Auth\Events\Registered;
@@ -41,6 +43,7 @@ class EventServiceProvider extends ServiceProvider
         $this->app->bind(CourseInterface::class,CourseService::class);
         $this->app->bind(CategoryInterface::class,CategoryService::class);
         $this->app->bind(SubCategoryInterface::class,SubCategoryService::class);
+        $this->app->bind(EventInterface::class,EventService::class);
     }
 
     /**

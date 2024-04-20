@@ -152,7 +152,6 @@
     <script src="{{ asset('app-assets') }}/js/core/app.min.js"></script>
     <script src="{{ asset('app-assets') }}/js/scripts/customizer.min.js"></script>
     <script src="{{ asset('app-assets') }}/vendors/js/forms/select/select2.full.min.js"></script>
-    {{-- <script src="{{ asset('app-assets') }}/vendors/datatables/buttons.server-side.js"></script> --}}
     <script src="{{ asset('app-assets') }}/js/scripts/forms/form-select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.2.0/tinymce.min.js"
      integrity="sha512-tofxIFo8lTkPN/ggZgV89daDZkgh1DunsMYBq41usfs3HbxMRVHWFAjSi/MXrT+Vw5XElng9vAfMmOWdLg0YbA=="

@@ -98,7 +98,6 @@
                     <span class="menu-title text-truncate" data-i18n="Services">Sub Category</span>
                 </a>
                 <ul class="menu-content">
-                    {{-- <li class="nav-item {{ request()->routeIs('categories') ? 'active' : null }}"> --}}
                     <li class="nav-item">
                         <a class="d-flex align-items-center" href="{{route('sub-category.list')}}">
                             <i class="bi bi-tags"></i>
@@ -125,7 +124,6 @@
                     <span class="menu-title text-truncate" data-i18n="Services">Courses</span>
                 </a>
                 <ul class="menu-content">
-                    {{-- <li class="nav-item {{ request()->routeIs('categories') ? 'active' : null }}"> --}}
                     <li class="nav-item">
                         <a class="d-flex align-items-center" href="{{route('course.list')}}">
                             <i class="bi bi-tags"></i>
@@ -134,6 +132,33 @@
                     </li>
                     <li class="nav-item {{ request()->routeIs('course.createOrEdit') ? 'active' : null }}">
                         <a class="d-flex align-items-center" href="{{ route('course.createOrEdit') }}">
+                            <i class="bi bi-tags"></i>
+                            <span class="menu-title text-truncate" data-i18n="Email">Add New</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            {{-- Events --}}
+            <li class="navigation-header">
+                <span data-i18n="Pages">Events</span>
+                <i data-feather="more-horizontal"></i>
+            </li>
+
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="javascript:void(0)">
+                    <i data-feather="grid"></i>
+                    <span class="menu-title text-truncate" data-i18n="Services">Events</span>
+                </a>
+                <ul class="menu-content">
+                    <li class="nav-item">
+                        <a class="d-flex align-items-center" href="{{route('event_list')}}">
+                            <i class="bi bi-tags"></i>
+                            <span class="menu-title text-truncate" data-i18n="Email">Event List</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('event.createOrEdit') ? 'active' : null }}">
+                        <a class="d-flex align-items-center" href="{{ route('event.createOrEdit') }}">
                             <i class="bi bi-tags"></i>
                             <span class="menu-title text-truncate" data-i18n="Email">Add New</span>
                         </a>
