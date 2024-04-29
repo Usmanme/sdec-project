@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +32,8 @@ class HomeController extends Controller
             return apiSuccessResponse($data['courses']);
         }
         $data['categories'] = Category::active()->get(['id', 'name']);
-        $data['courses'] = $data['courses']->get(['courses.id', 'title', 'description']);
+        $data['courses'] = $data['courses']->limit(4)->latest()->get(['courses.id', 'title', 'description']);
+        $data['events'] = Event::active()->select(['id','title','start_date_time','end_date_time','location'])->limit(4)->get();
         return view('front-end.home.main', compact('data'));
     }
 

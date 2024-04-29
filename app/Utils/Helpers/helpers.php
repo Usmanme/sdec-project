@@ -586,3 +586,30 @@ if (!function_exists('deleteImg')) {
     }
 
 }
+
+
+if (!function_exists('dateMonth'))
+{
+    function dateMonth($date)
+    {
+        $date_month = $date->format('d-M');
+        $exploded_date_month = explode('-',$date_month);
+        return $exploded_date_month;
+    }
+}
+
+if (!function_exists('timeConversion'))
+{
+    function timeConversion($date)
+    {
+        return $date->format('H:i');
+    }
+}
+
+if (!function_exists('dateConversion'))
+{
+    function dateConversion($date)
+    {
+        return $date->format('d M, Y');
+    }
+}

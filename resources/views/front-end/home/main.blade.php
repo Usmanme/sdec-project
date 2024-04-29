@@ -233,109 +233,37 @@
                         </div>
 
                         <div class="row">
+                            @forelse ($data['events'] as $event)
+                                <div class="entry event col-12">
+                                    <div class="grid-inner row align-items-center g-0 p-4">
+                                        <div class="col-md-4 mb-md-0">
+                                            <a href="{{ route('event.details',['id'=>$event->id]) }}" class="entry-image">
+                                                <img src="{{ asset('app-assets') }}/client/images/events/thumbs/1.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
+                                                <div class="entry-date">{{ dateMonth($event->start_date_time)[0] }}<span>{{ dateMonth($event->start_date_time)[1] }}</span></div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-8 ps-md-4">
+                                            <div class="entry-title title-xs">
+                                                <h2><a href="#">{{ $event->title ?? '' }}</a></h2>
+                                            </div>
+                                            <div class="entry-meta">
+                                                <ul>
 
-                            <div class="entry event col-12">
-                                <div class="grid-inner row align-items-center g-0 p-4">
-                                    <div class="col-md-4 mb-md-0">
-                                        <a href="#" class="entry-image">
-                                            <img src="{{ asset('app-assets') }}/client/images/events/thumbs/1.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
-                                            <div class="entry-date">10<span>Apr</span></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-8 ps-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h2><a href="#">Inventore voluptates velit totam ipsa tenetur</a></h2>
-                                        </div>
-                                        <div class="entry-meta">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                                <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="entry-content">
-                                            <a href="#" class="btn btn-secondary" disabled="disabled">Buy Tickets</a> <a href="#" class="btn btn-danger">Read More</a>
+                                                    <li><a href="#"><i class="icon-time"></i> <span>{{ timeConversion($event->start_date_time) }}</span> - <span>{{ timeConversion($event->end_date_time) }}</span></a></li>
+                                                    <li><a href="#"><i class="icon-map-marker2"></i> {{ $event->location ?? '' }}</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-content">
+                                                <a href="#" class="btn btn-secondary" disabled="disabled">Buy Tickets</a> <a href="#" class="btn btn-danger">Read More</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="entry event col-12">
-                                <div class="grid-inner row align-items-center g-0 p-4">
-                                    <div class="col-md-4 mb-md-0">
-                                        <a href="#" class="entry-image">
-                                            <img src="{{ asset('app-assets') }}/client/images/events/thumbs/2.jpg" alt="Nemo quaerat nam beatae iusto minima vel">
-                                            <div class="entry-date">16<span>Apr</span></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-8 ps-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h2><a href="#">Nemo quaerat nam beatae iusto minima vel</a></h2>
-                                        </div>
-                                        <div class="entry-meta">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                                <li><a href="#"><i class="icon-map-marker2"></i> Perth, Australia</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="entry-content">
-                                            <a href="#" class="btn btn-info">RSVP</a> <a href="#" class="btn btn-danger">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="entry event col-12">
-                                <div class="grid-inner row align-items-center g-0 p-4">
-                                    <div class="col-md-4 mb-md-0">
-                                        <a href="#" class="entry-image">
-                                            <img src="{{ asset('app-assets') }}/client/images/events/thumbs/3.jpg" alt="Ducimus ipsam error fugiat harum recusandae">
-                                            <div class="entry-date">3<span>May</span></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-8 ps-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h2><a href="#">Ducimus ipsam error fugiat harum recusandae</a></h2>
-                                        </div>
-                                        <div class="entry-meta">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                                <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="entry-content">
-                                            <a href="#" class="btn btn-secondary">Buy Tickets</a> <a href="#" class="btn btn-danger">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="entry event col-12">
-                                <div class="grid-inner row align-items-center g-0 p-4">
-                                    <div class="col-md-4 mb-md-0">
-                                        <a href="#" class="entry-image">
-                                            <img src="{{ asset('app-assets') }}/client/images/events/thumbs/4.jpg" alt="Nisi officia adipisci molestiae aliquam">
-                                            <div class="entry-date">16<span>Jun</span></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-8 ps-md-4">
-                                        <div class="entry-title title-xs">
-                                            <h2><a href="#">Nisi officia adipisci molestiae aliquam</a></h2>
-                                        </div>
-                                        <div class="entry-meta">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-time"></i> 12:00 - 18:00</a></li>
-                                                <li><a href="#"><i class="icon-map-marker2"></i> New York</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="entry-content">
-                                            <a href="#" class="btn btn-info">RSVP</a> <a href="#" class="btn btn-danger">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            @empty
+                                <h2>No Event Found.</h2>
+                            @endforelse
                         </div>
-
                     </div>
 
                     <div class="col-md-5">

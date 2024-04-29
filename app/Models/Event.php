@@ -14,7 +14,7 @@ class Event extends Model
     public $table = 'events';
     public $guarded = ['id'];
 
-    CONST PATH = 'Events';
+    CONST PATH = 'app-assets/events';
     protected $casts =
     [
         'start_date_time' => 'datetime:Y-m-d | H:i A',

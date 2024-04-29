@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Frontend\FrontEndEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,9 @@ Route::controller(HomeController::class)->group( function () {
     Route::get('subCategories','getSubCategories')->name('categorySubCategories');
 } );
 
+Route::controller(FrontEndEventController::class)->group( function () {
+    Route::get('event/{id}','singleEvent')->name('event.details');
+} );
 Route::get('/single-course', function () {
     return view('front-end/course/single-course');
 });
