@@ -80,7 +80,7 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td><span class="badge bg-danger"><span>{{ timeConversion($data['event']->end_date_time)}}</span> - <span>{{ timeConversion($data['event']->end_date_time)}}</span></span></td>
+												<td><span class="badge bg-danger"><span>{{ timeConversion($data['event']->start_date_time)}}</span> - <span>{{ timeConversion($data['event']->end_date_time)}}</span></span></td>
 												<td>{{ $data['event']->location }}</td>
 												<td>{{ $data['event']->title }}</td>
 											</tr>
