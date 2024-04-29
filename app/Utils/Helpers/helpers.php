@@ -613,3 +613,16 @@ if (!function_exists('dateConversion'))
         return $date->format('d M, Y');
     }
 }
+
+
+if (!function_exists('remainingHourMinSec'))
+{
+    function remainingHourMinSec( $start_date )
+    {
+        $end_date = Carbon::now();
+        $diffInHours = $start_date->diffInHours($end_date);
+        $diffInMints = $start_date->diffInMinutes($end_date);
+        $diffInSecs = $end_date->diffInSeconds($start_date);
+        return [ $diffInHours , $diffInMints , $diffInSecs ];
+    }
+}

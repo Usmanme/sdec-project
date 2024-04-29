@@ -7,7 +7,6 @@
 @section('content')
 <div class="content-wrap">
 				<div class="container clearfix">
-
 					<div class="single-event">
 
 						<div class="row col-mb-50">
@@ -15,7 +14,7 @@
 								<div class="entry-image mb-0">
 									<a href="#"><img src="{{ asset('app-assets') }}/Events/{{ $data['event']->event_logo }}" alt="Event Single"></a>
 									<div class="entry-overlay d-flex align-items-center justify-content-center">
-										<span class="d-none d-md-flex">Starts in: </span><div class="countdown d-block d-md-flex is-countdown" data-year="2020" data-month="12"><span class="countdown-row countdown-show3"><span class="countdown-section"><span class="countdown-amount">0</span><span class="countdown-period">Hours</span></span><span class="countdown-section"><span class="countdown-amount">0</span><span class="countdown-period">Minutes</span></span><span class="countdown-section"><span class="countdown-amount">0</span><span class="countdown-period">Seconds</span></span></span></div>
+										<span class="d-none d-md-flex">Starts in: </span><div class="countdown d-block d-md-flex is-countdown" data-year="2020" data-month="12"><span class="countdown-row countdown-show3"><span class="countdown-section"><span class="countdown-amount">{{ remainingHourMinSec($data['event']->start_date_time)[0]  }}</span><span class="countdown-period">Hours</span></span><span class="countdown-section"><span class="countdown-amount">{{ remainingHourMinSec($data['event']->start_date_time)[1] }}</span><span class="countdown-period">Minutes</span></span><span class="countdown-section"><span class="countdown-amount">{{ remainingHourMinSec($data['event']->start_date_time)[2]  }}</span><span class="countdown-period">Seconds</span></span></span></div>
 									</div>
 								</div>
 							</div>
