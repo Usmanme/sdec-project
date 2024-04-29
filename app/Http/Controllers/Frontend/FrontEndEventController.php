@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class FrontEndEventController extends Controller
 {
+    public function events ()
+    {
+        $data['events'] = Event::paginate(4);
+        $data['all_events'] = Event::all();
+        return view('front-end.events.events',compact('data'));
+    }
+
     public function singleEvent ( $id )
     {
         $data['event'] = Event::select(['id','title','description','event_logo','registration_fee','start_date_time','end_date_time','location','tags'])->find($id);

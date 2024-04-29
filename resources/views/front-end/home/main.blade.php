@@ -254,7 +254,8 @@
                                                 </ul>
                                             </div>
                                             <div class="entry-content">
-                                                <a href="#" class="btn btn-secondary" disabled="disabled">Buy Tickets</a> <a href="#" class="btn btn-danger">Read More</a>
+                                                {{-- <a href="#" class="btn btn-secondary" disabled="disabled">Buy Tickets</a>  --}}
+                                                <a href="{{ route('event.details',['id'=>$event['id']]) }}" class="btn btn-danger">Read More</a>
                                             </div>
                                         </div>
                                     </div>
@@ -268,11 +269,11 @@
 
                     <div class="col-md-5">
 
-                        <div class="fancy-title title-border">
+                        {{-- <div class="fancy-title title-border">
                             <h4>Favourite Locations</h4>
-                        </div>
+                        </div> --}}
 
-                        <div class="gmap max-vh-40 max-vh-md-none mb-5" style="height: 300px;" data-address="NSW, Australia" data-zoom="4" data-markers='[{ address: "Melbourne, Australia" }, { address: "Sydney, Australia" }]' data-scrollwheel="false"></div>
+                        {{-- <div class="gmap max-vh-40 max-vh-md-none mb-5" style="height: 300px;" data-address="NSW, Australia" data-zoom="4" data-markers='[{ address: "Melbourne, Australia" }, { address: "Sydney, Australia" }]' data-scrollwheel="false"></div> --}}
 
                         <div class="fancy-title title-border">
                             <h4>Gallery</h4>

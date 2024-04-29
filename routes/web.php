@@ -76,6 +76,7 @@ Route::controller(HomeController::class)->group( function () {
 } );
 
 Route::controller(FrontEndEventController::class)->group( function () {
+    Route::get('events','events')->name('events');
     Route::get('event/{id}','singleEvent')->name('event.details');
 } );
 Route::get('/single-course', function () {

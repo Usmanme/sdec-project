@@ -6,7 +6,7 @@
                 <!-- Logo
                 ============================================= -->
                 <div id="logo">
-                    <a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png">SDEC SAUDI</a>
+                    <a href="{{ route('homepage') }}" class="standard-logo" data-dark-logo="images/logo-dark.png">SDEC SAUDI</a>
                     <a href="index.html" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="{{ asset('app-assets') }}/client/images/logo@2x.png" alt=""></a>
                 </div><!-- #logo end -->
 
@@ -116,6 +116,9 @@
                                 </li>
 
                             </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ route('events') }}"><div>Events</div></a>
                         </li>
                     </ul>
 
