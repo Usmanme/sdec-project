@@ -89,7 +89,7 @@
                                             for="chkTableRow_{{ $event->id }}"></label></div>
                                 </td>
                                 <td>
-                                    <img src="{{ asset('Events/'.$event->event_logo) }}" alt="no img" style="width: 50px; height: 50px; border-radius: 50%">
+                                    <img src="{{ asset('app-assets/events/'.$event->event_logo) }}" alt="no img" style="width: 50px; height: 50px; border-radius: 50%">
                                 </td>
                                 <td>{{ $event->title ?? '--' }}</td>
                                 <td>{{ \Str::limit($event->description,20) ?? '--' }}</td>

@@ -125,7 +125,7 @@
         @if(isset($data['event']))
             ,files: [
                 {
-                    source: "{{ asset('Events/' . $data['event']['event_logo']) }}",
+                    source: "{{ asset('app-assets/events/' . $data['event']['event_logo']) }}",
                 }
             ],
         @endif
