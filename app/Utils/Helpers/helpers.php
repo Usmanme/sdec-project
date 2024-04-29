@@ -620,10 +620,17 @@ if (!function_exists('remainingHourMinSec'))
     function remainingHourMinSec( $start_date )
     {
         $end_date = Carbon::now();
-        $diffInHours = $start_date->diffInHours($end_date);
-        $diffInMints = $start_date->diffInMinutes($end_date);
-        
-        $diffInSecs = $end_date->diffInSeconds($start_date);
-        return [ $diffInHours , $diffInMints , $diffInSecs ];
+        if($start_date > $end_date) {
+            $diffInHours = $start_date->diffInHours($end_date);
+            $diffInMints = $start_date->diffInMinutes($end_date);
+            $diffInHours = $diffInHours+(int)floor($diffInMints/60);
+            $stringValue = strval($diffInMints/60);
+            $decimalPart = substr($stringValue, strpos($stringValue, '.') + 1, 2);
+            $diffInMints = floor(($decimalPart*60)/100);
+            $diffInSecs = $end_date->diffInSeconds($start_date);
+            return [ $diffInHours , $diffInMints , $diffInSecs ];
+        }else {
+            return [ $diffInHours = 0, $diffInMints = 0 , $diffInSecs = 0 ];
+        }
     }
 }
