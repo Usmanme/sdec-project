@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Frontend\FrontEndCategoryController;
 use App\Http\Controllers\Frontend\FrontEndCourseController;
 use App\Http\Controllers\Frontend\FrontEndEventController;
 
@@ -83,4 +84,8 @@ Route::controller(FrontEndEventController::class)->group( function () {
 
 Route::controller(FrontEndCourseController::class)->prefix('course')->group( function () {
     Route::get('/{id}/details','details')->name('course.details');
+} );
+
+Route::controller(FrontEndCategoryController::class)->group( function ( ) {
+    Route::get('categories','categories')->name('categories');
 } );

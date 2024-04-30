@@ -118,9 +118,13 @@
                             </ul>
                         </li>
                         <li class="menu-item">
+                            <a class="menu-link" href="{{ route('categories') }}"><div>Categories</div></a>
+                        </li>
+                        <li class="menu-item">
                             <a class="menu-link" href="{{ route('events') }}"><div>Events</div></a>
                         </li>
                     </ul>
+
 
                 </nav><!-- #primary-menu end -->
 
