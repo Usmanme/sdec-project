@@ -46,5 +46,17 @@ class Course extends Model
         )->select('categories.id', 'categories.name');
     }
 
+    public function subCategories()
+    {
+        return $this->hasOneThrough(
+            SubCategory::class, // Target model
+            SubCategoryCourse::class, // Intermediate model
+            'course_id', // Foreign key on intermediate model
+            'id', // Local key on this model
+            'id', // Local key on target model
+            'category_id' // Foreign key on intermediate model
+        )->select('sub_categories.id','sub_categories.name');
+    }
+
 
 }

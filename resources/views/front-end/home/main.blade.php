@@ -76,7 +76,7 @@
                         <div class="col-sm-6 col-lg-3">
                             <div class="feature-box fbox-effect fbox-center fbox-outline fbox-dark border-bottom-0">
                                 <div class="fbox-icon">
-                                    <a href="#"><i class="icon-calendar i-alt"></i></a>
+                                    <a href="{{ route('course.details',['id'=>encryptParams($course->id)]) }}"><i class="icon-calendar i-alt"></i></a>
                                 </div>
                                 <div class="fbox-content">
                                     <h3>{{ $course['title'] }}<span class="subtitle">{{ $course['description'] }}</span></h3>

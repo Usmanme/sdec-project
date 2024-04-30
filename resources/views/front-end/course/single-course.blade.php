@@ -26,12 +26,12 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <select name="" id="" class="form-select">
-                                        <option value="Course">Categories</option>
+                                        <option value="{{ $course?->category?->name }}">{{ $course?->category?->name }}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
                                     <select name="" id="" class="form-select">
-                                        <option value="Course">Sub Categories</option>
+                                        <option value="{{ $course?->subCategories->name }}">{{ $course?->subCategories->name }}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-5">
@@ -65,7 +65,7 @@
                     <div class="col-lg-8">
                         <div class="corses-singel-left mt-30">
                             <div class="title">
-                                <h3>Human Resources</h3>
+                                <h3>{{ $course['title'] ?? '' }}</h3>
                             </div>
                             <br><br>
                             <div class="corses-tab mt-30">
@@ -76,13 +76,10 @@
                                             <div class="singel-description pt-40">
                                                 <h5>Course Description</h5>
                                                 <p>
-                                                    There are certain skills you need to become a successful human resources
-                                                    manager. The ICI human resources management program designed in
-                                                    conjunction with the federal government and HR industry helps you learn
-                                                    them quickly and conveniently.
+                                                    {{ $course['description'] }}
                                                 </p>
                                             </div>
-                                            <div class="singel-description pt-40">
+                                            {{-- <div class="singel-description pt-40">
                                                 <h4>How Will You Benefit?</h4>
                                                 <ul>
                                                     <li>Fast track your career in human resources</li>
@@ -93,7 +90,7 @@
                                                   Have access to a tutor</li>
                                                     <li>Easy interest-free payment plans from as low as £25 per week</li>
                                                   </ul>
-                                            </div>
+                                            </div> --}}
                                         </div> <!-- overview description -->
                                     </div>
                                 </div> <!-- tab content -->
@@ -107,14 +104,14 @@
                                 <div class="course-features mt-30">
                                     <h4>Course Features </h4>
                                     <ul>
-                                        <li><i class="fa fa-clock-o"></i>Length : <span>21- 31 Weeks</span></li>
-                                        <li><i class="fa fa-clone"></i>Next Course Start : <span>See anytime <a href="">See Details</a></span></li>
-                                        <li><i class="fa fa-beer"></i>Course Delivery : <span>Self-Paced Online</span></li>
+                                        <li><i class="fa fa-clock-o"></i>Start Date : <span>{{ $course['start_date'] }}</span></li>
+                                        <li><i class="fa fa-clone"></i>End Date : <span>{{ $course['end_date'] }}</span></li>
+                                        <li><i class="fa fa-beer"></i>Venue : <span>{{ $course['venue'] }}</span></li>
                                     </ul>
-                                    <div class="price-button pt-10">
+                                    {{-- <div class="price-button pt-10">
                                         <span>Price : <b>998 GBP excl. VAT</b></span>
                                         <a href="#" class="main-btn">Find Out More</a>
-                                    </div>
+                                    </div> --}}
                                 </div> <!-- course features -->
                             </div>
 
