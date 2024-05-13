@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 
 class FrontEndCourseController extends Controller
 {
-    public function details ( $id )
-    {
-        $id = (int)decryptParams($id);
-        $course = Course::with(['category','subCategories'])->find($id);
+    public function details ( $slug )
+    {;
+        $course = Course::with(['category','subCategories'])->whereSlug( $slug )->first();
         return view('front-end/course/single-course',compact('course'));
     }
 }

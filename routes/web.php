@@ -83,7 +83,7 @@ Route::controller(FrontEndEventController::class)->group( function () {
 } );
 
 Route::controller(FrontEndCourseController::class)->prefix('course')->group( function () {
-    Route::get('/{id}/details','details')->name('course.details');
+    Route::get('/{slug}/details','details')->name('course.details');
 } );
 
 Route::controller(FrontEndCategoryController::class)->group( function ( ) {

@@ -25,7 +25,7 @@ class FrontEndCategoryController extends Controller
                 $data['courses'] = $data['courses']->where('courses.title', 'LIKE', "%{$request->input('course_name')}%");
         }
 
-        $data['courses'] = $data['courses']->select(['courses.id','courses.title','courses.description'])->paginate(12)->withQueryString();
+        $data['courses'] = $data['courses']->select(['courses.id','courses.title','courses.description','courses.slug'])->paginate(12)->withQueryString();
         $data['categories'] = Category::active()->select(['id','name'])->get();
         $data['sub_categories'] = SubCategory::active()->select(['id','name'])->get();
         return view('front-end.category.courses',compact('data'));
