@@ -33,7 +33,7 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-start mb-0">Import Courses</h2>
+                <h2 class="content-header-title float-start mb-0">Import SubCategory</h2>
                 <div class="breadcrumb-wrapper">
                     {{ Breadcrumbs::render($data['breadcrumb']) }}
                 </div>
@@ -46,7 +46,7 @@
 <div class="card">
     <center class="mt-2"><h1>Download Sample File</h1></center>
     <div class="card-body text-center">
-        <a href="{{asset('app-assets')}}/Sample-File.xlsx"
+        <a href="{{asset('app-assets')}}/SubCategory-Sample-File.xlsx"
         class="btn btn-relief-outline-info waves-effect waves-float waves-light">
         <i data-feather='save'></i>
         Download
@@ -56,7 +56,7 @@
 <div class="card">
     <center class="mt-2 mb-2"><h1>{{ $data['title'] }}</h1></center>
     <div class="card-body">
-        <form action="{{route('course.import')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('sub-category.import')}}" method="post" enctype="multipart/form-data">
             @csrf
             <label for="">Select File</label>
             <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror" >

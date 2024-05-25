@@ -43,7 +43,10 @@ Breadcrumbs::for('category.storeOrUpdate', function (BreadcrumbTrail $trail) {
     $trail->parent('category');
     $trail->push('Update Category');
 });
-
+Breadcrumbs::for('category.importCategoryForm', function (BreadcrumbTrail $trail) {
+    $trail->parent('category');
+    $trail->push('Import Category');
+});
 // Sub Categories
 Breadcrumbs::for('subCategory', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
@@ -58,6 +61,10 @@ Breadcrumbs::for('subCategory.createOrEdit', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('subCategory.storeOrUpdate', function (BreadcrumbTrail $trail) {
     $trail->parent('subCategory');
     $trail->push('Update Sub Category');
+});
+Breadcrumbs::for('sub-category.importSubCategoryForm', function (BreadcrumbTrail $trail) {
+    $trail->parent('subCategory');
+    $trail->push('Import Sub Category');
 });
 
 // Events
