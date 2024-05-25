@@ -19,7 +19,7 @@ class FrontEndCategoryController extends Controller
             ->join('sub_category_courses', 'courses.id', 'sub_category_courses.course_id')
             ->where('sub_category_courses.category_id', $request->input('category'))
             ->where('sub_category_courses.sub_category_id', $request->input('sub_category'))
-            ->groupBy('courses.id', 'courses.title', 'courses.description');
+            ->groupBy('courses.id', 'courses.title', 'courses.description','courses.slug');
 
             if (!is_null($request->input('course_name')) && !empty($request->input('course_name')))
                 $data['courses'] = $data['courses']->where('courses.title', 'LIKE', "%{$request->input('course_name')}%");

@@ -4,6 +4,11 @@
 @section('keywords', 'Single Course Keywords')
 @section('page-css')
 <link rel="stylesheet" href="{{asset('app-assets')}}/client/css/courses.css">
+<style>
+    #course_name::placeholder {
+        color: black !important;
+    }
+</style>
 @endsection
 @section('content')
     <div id="wrapper" class="clearfix">
@@ -23,25 +28,7 @@
                                     your career started, you’ve come to the right place. Search and compare courses today!
                                 </p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <select name="" id="" class="form-select">
-                                        <option value="{{ $course?->category?->name }}">{{ $course?->category?->name }}</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <select name="" id="" class="form-select">
-                                        <option value="{{ $course?->subCategories?->name }}">{{ $course?->subCategories?->name }}</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control search-box" placeholder="Type in the course">
-                                </div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-success w-100">Search</button>
-                                </div>
-
-                            </div>
+                            
                             {{-- <h1>The Apple WWDC Event starts in:</h1> --}}
                         </div>
 
@@ -61,6 +48,25 @@
         </section>
         <section id="corses-singel" class="pt-90 pb-120 gray-bg">
             <div class="container">
+                <div class="row mb-5">
+                    <div class="col-md-2">
+                        <select name="" style="color: black !important" id="" class="form-select">
+                            <option value="{{ $course?->category?->name }}">{{ $course?->category?->name }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select name="" style="color: black !important" id="" class="form-select">
+                            <option value="{{ $course?->subCategories?->name }}">{{ $course?->subCategories?->name }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text"  class="form-control search-box" placeholder="Type in the course">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success w-100">Search</button>
+                    </div>
+
+                </div>
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="corses-singel-left mt-30">

@@ -4,6 +4,11 @@
 @section('keywords','Home Keywords')
 @section('page-css')
 <link rel="stylesheet" href="{{asset('app-assets')}}/client/css/courses.css">
+<style>
+    #course_name::placeholder {
+        color: black !important;
+    }
+</style>
 @endsection
 @section('content')
 <div id="wrapper" class="clearfix">
@@ -24,37 +29,7 @@
                                 your career started, you’ve come to the right place. Search and compare courses today!
                             </p>
                         </div>
-                        <form method="GET" >
-                        <div class="row">
-                            <div class="col-md-2">
-                                <select name="category" id="category" class="form-select categories-dropdown">
-                                    <option value="">--Select Category--</option>
-                                    @forelse ($data['categories'] as $category)
-                                        <option value="{{$category->id}}" {{ isset(request()->category) && request()->category == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
-                                    @empty
-                                        <option value="">--No Category Found--</option>
-                                    @endforelse
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <select name="sub_category" id="sub_category" class="form-select sub-categories-dropdown">
-                                    <option value="">--Select Sub Category--</option>
-                                    @forelse ($data['sub_categories'] as $sub_category)
-                                        <option value="{{$sub_category->id}}"  {{ isset(request()->sub_category) && request()->sub_category == $sub_category->id ? 'selected' : '' }}>{{$sub_category->name}}</option>
-                                    @empty
-                                        <option value="">--No Sub Category Found--</option>
-                                    @endforelse
-                                </select>
-                            </div>
-                            <div class="col-md-5">
-                                <input type="text" class="form-control search-box" name="course_name" id="course_name" value="{{ isset(request()->course_name) ? request()->course_name : '' }}" placeholder="Type in the course">
-                            </div>
-                            <div class="col-md-2">
-                                <button type="submit" id="search_courses" class="btn btn-success w-100">Search</button>
-                            </div>
-
-                        </div>
-                    </form>
+                        
                         {{-- <h1>The Apple WWDC Event starts in:</h1> --}}
                     </div>
                     <div id="countdown-ex1" class="countdown countdown-large coming-soon mx-auto" data-year="2021" style="max-width:700px;"></div>
@@ -75,13 +50,43 @@
     <section id="content">
         <div class="content-wrap">
             <div class="container clearfix">
+                <form method="GET" >
+                    <div class="row">
+                        <div class="col-md-2">
+                            <select name="category" style="color: black !important" id="category" class="form-select categories-dropdown">
+                                <option value="">--Select Category--</option>
+                                @forelse ($data['categories'] as $category)
+                                    <option value="{{$category->id}}" {{ isset(request()->category) && request()->category == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+                                @empty
+                                    <option value="">--No Category Found--</option>
+                                @endforelse
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select name="sub_category" style="color: black !important" id="sub_category" class="form-select sub-categories-dropdown">
+                                <option value="">--Select Sub Category--</option>
+                                @forelse ($data['sub_categories'] as $sub_category)
+                                    <option value="{{$sub_category->id}}"  {{ isset(request()->sub_category) && request()->sub_category == $sub_category->id ? 'selected' : '' }}>{{$sub_category->name}}</option>
+                                @empty
+                                    <option value="">--No Sub Category Found--</option>
+                                @endforelse
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control search-box" name="course_name" id="course_name" value="{{ isset(request()->course_name) ? request()->course_name : '' }}" placeholder="Type in the course">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" id="search_courses" class="btn btn-success w-100">Search</button>
+                        </div>
 
+                    </div>
+                </form>
                 <div class="row col-mb-50 mb-3" id="courses-section">
                     @forelse ($data['courses'] as $course)
                         <div class="col-sm-6 col-lg-3">
                             <div class="feature-box fbox-effect fbox-center fbox-outline fbox-dark border-bottom-0">
                                 <div class="fbox-icon">
-                                    <a href="{{ route('course.details',['slug'=>$course->slug]) }}"><i class="icon-calendar i-alt"></i></a>
+                                    <a href="{{url('course/'.$course->slug.'/details')}}"><i class="icon-calendar i-alt"></i></a>
                                 </div>
                                 <div class="fbox-content">
                                     <h3>{{ $course['title'] }}<span class="subtitle">{{ $course['description'] }}</span></h3>
