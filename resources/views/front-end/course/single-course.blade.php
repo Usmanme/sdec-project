@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <select name="" id="" class="form-select">
-                                        <option value="{{ $course?->subCategories->name }}">{{ $course?->subCategories->name }}</option>
+                                        <option value="{{ $course?->subCategories?->name }}">{{ $course?->subCategories?->name }}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-5">

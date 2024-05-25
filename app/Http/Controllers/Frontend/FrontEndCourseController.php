@@ -11,6 +11,6 @@ class FrontEndCourseController extends Controller
     public function details ( $slug )
     {;
         $course = Course::with(['category','subCategories'])->whereSlug( $slug )->first();
-        return view('front-end/course/single-course',compact('course'));
+        return view('front-end.course.single-course',compact('course'));
     }
 }
