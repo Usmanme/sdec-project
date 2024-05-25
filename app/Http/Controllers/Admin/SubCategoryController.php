@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\SubCategory;
 use App\Repository\SubCategory\SubCategoryInterface;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
 class SubCategoryController extends Controller
 {
     public $sub_category = null;
@@ -45,5 +45,31 @@ class SubCategoryController extends Controller
         $this->sub_category->deleteSubCategory($ids);
         return redirect()->back()->withSuccess("Sub Category Deleted Successfully.");
 
+    }
+    public function importSubCategoryForm()
+    {
+        $data['title'] = "Import Sub Category";
+        $data['breadcrumb'] = 'sub-category.importSubCategoryForm';
+        $data['page_title'] = 'Import Sub Category';
+        $data['submit_button'] = 'Import';
+        return view('app.admin-panel.sub-category.import',compact('data'));
+    }
+
+    public function importSubCategory( Request $request )
+    {
+        // $validated_data = $this->validate($request,[
+        //     'file'=>'required|file|mimes:xls,xlsx',
+        // ],
+        // [
+        //     'file.required' => 'Please select an Excel file.',
+        //     'file.mimes' => 'The file must be an Excel file with extension .xls or .xlsx.',
+        // ]);
+        // $sub_category_import = New SubCategoryImport();
+        // Excel::import( $sub_category_import, $request->file('file') );
+        // if( $sub_category_import->getFailureRecords() > 0 ) {
+        //     return to_route('sub-category.list')->withDanger($sub_category_import->getFailureRecords().' are duplicate enteries/missing values.');
+        // }else {
+        //     return to_route('sub-category.list')->withSuccess('Sub Category Imported.');
+        // }
     }
 }
