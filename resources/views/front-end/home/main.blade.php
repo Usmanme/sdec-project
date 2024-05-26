@@ -205,6 +205,29 @@
                 </div>
             </div>
 
+            {{-- Counter Here --}}
+            <div class="container">
+                <div class="row">
+                    <div class="offset-2 mt-5 mb-5 col-md-4 col-lg-12">
+                        <div class="widget clearfix" style="margin-bottom: -20px;">
+    
+                            <div class="row">
+                                <div class="col-lg-6 bottommargin-sm">
+                                    <div class="counter counter-small"><span data-from="50" data-to="15065421" data-refresh-interval="80" data-speed="3000" data-comma="true"></span></div>
+                                    <h5 class="mb-0">Total Downloads</h5>
+                                </div>
+    
+                                <div class="col-lg-6 bottommargin-sm">
+                                    <div class="counter counter-small"><span data-from="100" data-to="18465" data-refresh-interval="50" data-speed="2000" data-comma="true"></span></div>
+                                    <h5 class="mb-0">Clients</h5>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="parallax bottommargin-lg dark" style="padding: 60px 0; background-image: url('{{ asset('app-assets') }}/client/images/parallax/calendar.jpg'); background-repeat: repeat-y; height: auto;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -500px;">
                 <div class="container clearfix">
 

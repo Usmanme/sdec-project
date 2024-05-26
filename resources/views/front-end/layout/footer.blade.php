@@ -113,7 +113,7 @@
                 <div class="col-lg-4">
 
                     <div class="row col-mb-50">
-                        <div class="col-md-4 col-lg-12">
+                        {{-- <div class="col-md-4 col-lg-12">
                             <div class="widget clearfix" style="margin-bottom: -20px;">
 
                                 <div class="row">
@@ -129,7 +129,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-5 col-lg-12">
                             <div class="widget subscribe-widget clearfix">
