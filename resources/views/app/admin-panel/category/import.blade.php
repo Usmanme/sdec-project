@@ -56,7 +56,7 @@
 <div class="card">
     <center class="mt-2 mb-2"><h1>{{ $data['title'] }}</h1></center>
     <div class="card-body">
-        <form action="{{route('course.import')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('category.import')}}" method="post" enctype="multipart/form-data">
             @csrf
             <label for="">Select File</label>
             <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror" >

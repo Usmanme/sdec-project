@@ -3,9 +3,13 @@
 namespace App\Imports;
 
 use App\Models\Category;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CategoryImport implements ToModel
+class CategoryImport implements ToCollection,WithHeadingRow,SkipsEmptyRows
 {
     /**
      * @param array $row
@@ -13,11 +17,10 @@ class CategoryImport implements ToModel
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public $failure_records = 0;
-    public function model(array $row)
+    public function collection(Collection $collection)
     {
-
-        foreach ($row as $cat) {
-            $check_cat = Category::whereTitle($cat['name'])->count();
+        foreach ($collection as $cat) {
+            $check_cat = Category::whereName($cat['name'])->count();
             if ($check_cat == 0 && !is_null($cat['name']) && !empty($cat['name'])) {
                 $category = new Category();
                 $category->name = $cat['name'] ?? null;
