@@ -23,7 +23,7 @@ class CategoryImport implements ToModel
                 $category->name = $cat['name'] ?? null;
                 $category->description = $cat['description'] ?? null;
                 $category->status = "active";
-                $category->user_id = auth()?->user()->id ?? 1;
+                $category->user_id = auth()?->user()?->id ?? 1;
                 $category->created_at = now();
                 $category->updated_at = now();
                 $category->save();

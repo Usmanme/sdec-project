@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\SubCategory;
 use App\Observers\CategorySlug;
 use App\Observers\CourseSlugObserver;
+use App\Observers\SubCategorySlug;
 use App\Repository\Category\CategoryInterface;
 use App\Repository\Category\CategoryService;
 use App\Repository\Course\CourseInterface;
@@ -40,6 +42,7 @@ class EventServiceProvider extends ServiceProvider
     {
         Course::observe(CourseSlugObserver::class);
         Category::observe(CategorySlug::class);
+        SubCategory::observe(SubCategorySlug::class);
         $this->app->bind(CourseInterface::class,CourseService::class);
         $this->app->bind(CategoryInterface::class,CategoryService::class);
         $this->app->bind(SubCategoryInterface::class,SubCategoryService::class);

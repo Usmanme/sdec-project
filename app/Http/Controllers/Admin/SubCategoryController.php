@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\SubCategoryImport;
 use App\Models\SubCategory;
 use App\Repository\SubCategory\SubCategoryInterface;
 use Illuminate\Http\Request;
@@ -57,19 +58,19 @@ class SubCategoryController extends Controller
 
     public function importSubCategory( Request $request )
     {
-        // $validated_data = $this->validate($request,[
-        //     'file'=>'required|file|mimes:xls,xlsx',
-        // ],
-        // [
-        //     'file.required' => 'Please select an Excel file.',
-        //     'file.mimes' => 'The file must be an Excel file with extension .xls or .xlsx.',
-        // ]);
-        // $sub_category_import = New SubCategoryImport();
-        // Excel::import( $sub_category_import, $request->file('file') );
-        // if( $sub_category_import->getFailureRecords() > 0 ) {
-        //     return to_route('sub-category.list')->withDanger($sub_category_import->getFailureRecords().' are duplicate enteries/missing values.');
-        // }else {
-        //     return to_route('sub-category.list')->withSuccess('Sub Category Imported.');
-        // }
+        $validated_data = $this->validate($request,[
+            'file'=>'required|file|mimes:xls,xlsx',
+        ],
+        [
+            'file.required' => 'Please select an Excel file.',
+            'file.mimes' => 'The file must be an Excel file with extension .xls or .xlsx.',
+        ]);
+        $sub_category_import = New SubCategoryImport();
+        Excel::import( $sub_category_import, $request->file('file') );
+        if( $sub_category_import->getFailureRecords() > 0 ) {
+            return to_route('sub-category.list')->withDanger($sub_category_import->getFailureRecords().' are duplicate enteries/missing values.');
+        }else {
+            return to_route('sub-category.list')->withSuccess('Sub Category Imported.');
+        }
     }
 }
